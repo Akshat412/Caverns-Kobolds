@@ -392,8 +392,6 @@ int story(player&p,enemy&e,int input)
 			break;
 		}
 	}
-
-	cout<<"\nLevel RN : "<<p.level;
 }	
 
 int main()
