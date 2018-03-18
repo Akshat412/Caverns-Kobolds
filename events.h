@@ -152,7 +152,8 @@ int random_event1(player&p,enemy&e)
 		}
 		break;
 	}
-
+	
+	return 0;
 	empty();
 }
 
@@ -231,6 +232,8 @@ int random_event2(player&p,enemy&e)
 		}
 		break;
 	}
+	
+	return 0;
 }
 
 int battle_collosus1(player&p,enemy&e)
