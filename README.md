@@ -15,4 +15,12 @@ To Add:
 2. More Weapon / Armor Types
 3. More Zombie Lizards
 
-NOTE : YOU NEED MINGW INSTALLED TO RUN THIS GAME
+Updates :
+
+v1.1 :
+1. Added standard RPG stats [Strength, Dexterity etc]
+2. Added races that affect starting stats
+3. Added weapon stats 
+4. Improved UI of battles
+5. Added Inventory System
+6. Added stress-based mechanics
