@@ -14,3 +14,5 @@ To Add:
 1. A Third Dungeon
 2. More Weapon / Armor Types
 3. More Zombie Lizards
+
+NOTE : YOU NEED MINGW INSTALLED TO RUN THIS GAME
