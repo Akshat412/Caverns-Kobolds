@@ -1,0 +1,87 @@
+Gujek
+Half-Orc
+Knight
+Rusty Sword
+Heavy Iron Armor
+Heavy Iron Shield
+Empty
+Empty
+Empty
+Empty
+Empty
+Empty
+Empty
+No Shield
+0
+0
+0 0 0 0
+0
+0
+0 0 0 0
+0
+0
+0 0 0 0
+0
+0
+0 0 0 0
+0
+0
+0 0 0 0
+0
+0
+0 0 0 0
+0
+0
+0 0 0 0
+1
+0
+0 0 0 0
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+21
+27
+26
+11
+8
+5
+30
+15
+2 2 0 0
+0
+3
+8
+9
+4 0 0 0
+8
+4
+2 2 0 0
+0
+2
+0
+10
+1
+10
+10
+0
+0
+0
+0
+3

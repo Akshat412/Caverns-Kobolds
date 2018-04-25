@@ -1,0 +1,87 @@
+Valantar
+Half-Elf
+Herald
+Iron Spear
+Light Iron Armor
+Iron Shield Of The Magi
+Empty
+Empty
+Empty
+Empty
+Empty
+Empty
+Empty
+No Shield
+0
+0
+0 0 0 0
+0
+0
+0 0 0 0
+0
+0
+0 0 0 0
+0
+0
+0 0 0 0
+0
+0
+0 0 0 0
+0
+0
+0 0 0 0
+0
+0
+0 0 0 0
+1
+0
+0 0 0 0
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+13
+20
+10
+8
+28
+19
+20
+10
+1 0 3 0
+0
+4
+5
+5
+1 0 3 0
+6
+3
+0 0 0 4
+0
+3
+0
+12
+1
+12
+10
+0
+0
+0
+0
+3
