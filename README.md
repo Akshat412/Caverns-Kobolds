@@ -24,3 +24,21 @@ v1.1 :
 4. Improved UI of battles
 5. Added Inventory System
 6. Added stress-based mechanics
+
+v1.2 : Bug Fixes on old features
+
+v1.3 : Bug Fixes on old features (found more bugs)
+
+v1.4 : Bug Fixes on old features (found yet more bugs)
+
+v1.5 : 
+1. Added Shields [Deflect damage enemy does in terms of percentage]
+2. Added weapon types corresponding to different debuffs on enemies [Stun, Bleed, Blight]
+3. Added unique attack names to each weapon 
+4. Added unique attack names to each enemy
+
+v1.6 : Bug Fixes on old features 
+
+v1.7 : Bug Fixes on old features (broken RNG everywhere)
+
+v1.8 : Bug Fixes on old features (found a ton of bugs)
