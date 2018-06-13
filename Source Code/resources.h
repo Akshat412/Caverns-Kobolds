@@ -701,7 +701,7 @@ int setcolor()
 
 		case GREEN:
 		{
-			SetConsoleTextAttribute(h,FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+			SetConsoleTextAttribute(h,FOREGROUND_GREEN );
 		}
 		break;
 
