@@ -1142,9 +1142,11 @@ int battle_collosus2(player&p,enemy&e)
 			{
 				p.playerdoes = 7;
 
-				if(p.i.torches > 0)
+				if(p.i.torches >= 0)
 				{
 					playerchance = "SUCCESSFUL";
+
+					p.i.torches--;
 
 					e.stunned += 5;
 				}

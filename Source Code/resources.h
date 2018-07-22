@@ -536,7 +536,6 @@ int write_data(player&p,string stream)
 	savefile << p.i.money << endl;
 	savefile << p.i.weapons << endl;
 	savefile << p.i.armors << endl;
-	savefile << p.wolf_slayer << endl;
 	savefile << p.xp << endl;
 	savefile << p.level << endl;
 
@@ -676,7 +675,6 @@ int read_data(player&p,string stream)
 	savefile >> p.i.money;
 	savefile >> p.i.weapons;
 	savefile >> p.i.armors;
-	savefile >> p.wolf_slayer;
 	savefile >> p.xp;
 	savefile >> p.level;
 }
@@ -701,7 +699,7 @@ int setcolor()
 
 		case GREEN:
 		{
-			SetConsoleTextAttribute(h,FOREGROUND_GREEN );
+			SetConsoleTextAttribute(h,FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		}
 		break;
 

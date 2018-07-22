@@ -3065,6 +3065,8 @@ int battle(player&p,enemy&e)
 						e.bleeding = 0;
 						e.poisoned = 0;
 
+						empty();
+
 						return 5;
 					}
 					break;

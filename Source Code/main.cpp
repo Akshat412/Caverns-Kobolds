@@ -111,7 +111,7 @@ int story(player&p,enemy&e,int input)
 				
 				cout<<"\nBandit Chief : Now, on to what the task is..."<<endl;
 
-				cout<<"\nBandit Chief : Around this valley are three extremely dangerous regions, guarded by gigantic creatures known as the Collosi."<<endl;
+				cout<<"\nBandit Chief : Around this valley are two extremely dangerous regions, guarded by gigantic creatures known as the Collosi."<<endl;
 
 				cout<<"\nBandit Chief : Your job is to slay every one of these beasts, as they are stopping my people from gathering resources in these regions"<<endl;
 
@@ -615,7 +615,7 @@ int story(player&p,enemy&e,int input)
 				line();
 
 				cout<<"\nYou are summoned by the Bandit Chief"<<endl;
-				cout<<"\nBandit Chief : You have proven yourself yet again. Well done"<<endl;
+				cout<<"\nBandit Chief : You have proven yourself! Well done, you have earned your freedom"<<endl;
 				cout<<"\nYou go back to your cell and rest"<<endl;
 									
 				p.HP = p.maxHP;
@@ -629,8 +629,7 @@ int story(player&p,enemy&e,int input)
 			{
 				line();
 				
-				cout<<"\nYou finished what I have so far!"<<endl;
-				gamesave(p,input);
+				cout<<"\nYou get out of the stronghold, walking away to freedom...."<<endl;
 				
 				empty();
 
