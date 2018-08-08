@@ -1,9 +1,9 @@
-1
-Orc
-Berserker
-Iron Mace
-Heavy Chainmail Armor
-No Shield
+Mehul
+Human
+Battlemage
+Blade of the Magi
+Heavy Iron Armor
+Iron Shield Of The Magi
 Empty
 Empty
 Empty
@@ -56,30 +56,30 @@ No Shield
 .
 .
 .
-35
-32
-9
-7
-9
-8
-50
+17
 24
-4 0 0 0
-1
+12
+11
+15
+25
+16
+12
+0 0 2 2
 0
+3
 1
-10
-10
+8
+9
 4 0 0 0
-1
-0
-0 0 0 0
+6
+3
+0 0 0 4
 0
 2
-8
+10
 5
 1
-8
+10
 10
 0
 0

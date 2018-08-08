@@ -1004,142 +1004,189 @@ int levelup(player&p)
 	xp_STA = 100;
 	xp_FAI = 100;
 	xp_INE = 100;
-	
-	cout<<"\nWhat would you like to level up?"<<endl;
-	cout<<"\n1. Strength +1 : "<<xp_STR<<endl;
-	cout<<"\n2. Vitality +1 : "<<xp_VIT<<endl;
-	cout<<"\n3. Dexterity +1 : "<<xp_DEX<<endl;
-	cout<<"\n4. Stamina +1 : "<<xp_STA<<endl;
-	cout<<"\n5. Faith +1 : "<<xp_FAI<<endl;
-	cout<<"\n6. Intelligence +1 : "<<xp_FAI<<endl;
-	cout<<"\n7. Exit"<<endl;
-	
-	cout<<"\nXP : "<<p.xp<<endl;
-	
-	cout<<"\nInput choice : ";
-	cin>>choice;
-	
-	switch(choice)
+
+	c = WHITE;
+	setcolor();
+
+	while(true)
 	{
-		case 1 :
+		c = WHITE;
+		setcolor();
+
+		cout<<"\nWhat would you like to level up?"<<endl;
+		cout<<"\n1. Strength +1 : "<<xp_STR<<endl;
+		cout<<"\n2. Vitality +1 : "<<xp_VIT<<endl;
+		cout<<"\n3. Dexterity +1 : "<<xp_DEX<<endl;
+		cout<<"\n4. Stamina +1 : "<<xp_STA<<endl;
+		cout<<"\n5. Faith +1 : "<<xp_FAI<<endl;
+		cout<<"\n6. Intelligence +1 : "<<xp_FAI<<endl;
+		cout<<"\n7. Exit"<<endl;
+		
+		cout<<"\nXP : "<<p.xp<<endl;
+		
+		cout<<"\nInput choice : ";
+		cin>>choice;
+		
+		switch(choice)
 		{
-			if(p.xp >= xp_STR)
+			case 1 :
 			{
-				c = GREEN;
-				setcolor();
+				if(p.xp >= xp_STR)
+				{
+					c = GREEN;
+					setcolor();
 
-				cout<<"\nYour Strength increased by 1"<<endl;
-				p.STR++;
-				p.xp -= xp_STR;
+					cout<<"\nYour Strength increased by 1"<<endl;
+					p.STR++;
+					p.xp -= xp_STR;
+				}
+
+				else
+				{
+					c = RED;
+					setcolor();	
+
+					cout<<"\nXP too low"<<endl;
+
+					c = WHITE;
+					setcolor();
+				}
 			}
+			break;
 
-			else
+			case 2:
 			{
-				cout<<"\nXP too low"<<endl;
+				if(p.xp >= xp_VIT)
+				{
+					c = GREEN;
+					setcolor();
+
+					cout<<"\nYour Vitality increased by 1"<<endl;
+					p.VIT++;
+					p.xp -= xp_VIT;
+				}
+
+				else
+				{
+					c = RED;
+					setcolor();	
+
+					cout<<"\nXP too low"<<endl;
+
+					c = WHITE;
+					setcolor();
+				}
 			}
+			break;
+
+			case 3:
+			{
+				if(p.xp >= xp_DEX)
+				{
+					c = GREEN;
+					setcolor();
+
+					cout<<"\nYour Dexterity increased by 1"<<endl;
+					p.DEX++;
+					p.xp -= xp_DEX;
+				}
+
+				else
+				{
+					c = RED;
+					setcolor();	
+
+					cout<<"\nXP too low"<<endl;
+
+					c = WHITE;
+					setcolor();
+				}
+			}
+			break;
+
+			case 4:
+			{
+				if(p.xp >= xp_STA)
+				{
+					c = GREEN;
+					setcolor();
+
+					cout<<"\nYour Stamina increased by 1"<<endl;
+					p.STA++;
+					p.xp -= xp_STA;
+				}
+
+				else
+				{
+					c = RED;
+					setcolor();	
+
+					cout<<"\nXP too low"<<endl;
+
+					c = WHITE;
+					setcolor();
+				}
+			}
+			break;
+
+			case 5:
+			{
+				if(p.xp >= xp_FAI)
+				{
+					c = GREEN;
+					setcolor();
+
+					cout<<"\nYour Faith increased by 1"<<endl;
+					p.FAI++;
+					p.xp -= xp_FAI;
+				}
+
+				else
+				{
+					c = RED;
+					setcolor();	
+
+					cout<<"\nXP too low"<<endl;
+
+					c = WHITE;
+					setcolor();
+				}
+			}
+			break;
+
+			case 6:
+			{
+				if(p.xp >= xp_INE)
+				{
+					c = GREEN;
+					setcolor();
+
+					cout<<"\nYour Intelligence increased by 1"<<endl;
+					p.INE++;
+					p.xp -= xp_INE;
+				}
+
+				else
+				{
+					c = RED;
+					setcolor();	
+
+					cout<<"\nXP too low"<<endl;
+
+					c = WHITE;
+					setcolor();
+				}
+			}
+			break;
+
+			default:
+			{
+				return 0;
+			}
+			break;
 		}
-		break;
 
-		case 2:
-		{
-			if(p.xp >= xp_VIT)
-			{
-				c = GREEN;
-				setcolor();
-
-				cout<<"\nYour Vitality increased by 1"<<endl;
-				p.VIT++;
-				p.xp -= xp_VIT;
-			}
-
-			else
-			{
-				cout<<"\nXP too low"<<endl;
-			}
-		}
-		break;
-
-		case 3:
-		{
-			if(p.xp >= xp_DEX)
-			{
-				c = GREEN;
-				setcolor();
-
-				cout<<"\nYour Dexterity increased by 1"<<endl;
-				p.DEX++;
-				p.xp -= xp_DEX;
-			}
-
-			else
-			{
-				cout<<"\nXP too low"<<endl;
-			}
-		}
-		break;
-
-		case 4:
-		{
-			if(p.xp >= xp_STA)
-			{
-				c = GREEN;
-				setcolor();
-
-				cout<<"\nYour Stamina increased by 1"<<endl;
-				p.STA++;
-				p.xp -= xp_STA;
-			}
-
-			else
-			{
-				cout<<"\nXP too low"<<endl;
-			}
-		}
-		break;
-
-		case 5:
-		{
-			if(p.xp >= xp_FAI)
-			{
-				c = GREEN;
-				setcolor();
-
-				cout<<"\nYour Faith increased by 1"<<endl;
-				p.FAI++;
-				p.xp -= xp_FAI;
-			}
-
-			else
-			{
-				cout<<"\nXP too low"<<endl;
-			}
-		}
-		break;
-
-		case 6:
-		{
-			if(p.xp >= xp_INE)
-			{
-				c = GREEN;
-				setcolor();
-
-				cout<<"\nYour Intelligence increased by 1"<<endl;
-				p.INE++;
-				p.xp -= xp_INE;
-			}
-
-			else
-			{
-				cout<<"\nXP too low"<<endl;
-			}
-		}
-		break;
-
-		default:
-		{
-			return 0;
-		}
-		break;
+		line();
 	}
 
 	p.setattributes();
