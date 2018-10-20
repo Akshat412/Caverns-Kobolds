@@ -645,9 +645,6 @@ int main()
 	system("Color 0F");
 	system("cls");
 
-	c = WHITE;
-	setcolor();
-
 	player p;
 	enemy e;
 
