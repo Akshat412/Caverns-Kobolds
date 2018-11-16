@@ -1,109 +1,100 @@
 #pragma once
 
-#include"resources.h"
-#include"loot.h"
+#include "resources.h"
+#include "loot.h"
+#include "textart.h"
 
 using namespace std;
 
-int race(player&p)
+void race(player &p)
 {
 	int choice;
+  bool incorrect_choice = true;
 
-correct :
+  do {
+    cout<<"\nWhich race are you?"<<endl;
+    cout<<"\n1. Human "<<endl;
+    cout<<"\n2. Orc "<<endl;
+    cout<<"\n3. Half-Elf"<<endl;
+    cout<<"\n4. Half-Orc"<<endl;
+    cout<<"\n5. Half-Lizard"<<endl;
+    cout<<"\n6. Elf"<<endl;
 
-	cout<<"\nWhich race are you?"<<endl;
-	cout<<"\n1. Human "<<endl;
-	cout<<"\n2. Orc "<<endl;
-	cout<<"\n3. Half-Elf"<<endl;
-	cout<<"\n4. Half-Orc"<<endl;
-	cout<<"\n5. Half-Lizard"<<endl;
-	cout<<"\n6. Elf"<<endl;
+    cout<<"\nInput choice : ";
+    cin >> choice;
 
-	cout<<"\nInput choice : ";
-	cin>>choice;
+    clear();
 
-	system("cls");
+    switch(choice)
+    {
+      case 1:
+        cout << "\nYou are a Human" << endl;
+        p.race = "Human";
+        p.STR += 1;
+        p.VIT += 1;
+        p.DEX += 1;
+        p.STA += 1;
+        incorrect_choice = false;
+      break;
 
-	switch(choice) 
-	{
-		case 1:
-		{
-			cout<<"\nYou are a Human"<<endl;
-			p.race = "Human";
-			p.STR += 1;
-			p.VIT += 1;
-			p.DEX += 1;
-			p.STA += 1;
-			
-		}
-		break;
+      case 2:
+        cout << "\nYou are an Orc" << endl;
+        p.race = "Orc";
+        p.STR += 3;
+        p.VIT += 3;
+        p.DEX -= 1;
+        p.STA -= 1;
+        incorrect_choice = false;
+      break;
 
-		case 2:
-		{
-			cout<<"\nYou are an Orc"<<endl;
-			p.race = "Orc";
-			p.STR += 3;
-			p.VIT += 3;
-			p.DEX -= 1;
-			p.STA -= 1;
-		}
-		break;
+      case 3:
+        cout << "\nYou are a Half-Elf" << endl;
+        p.race = "Half-Elf";
+        p.FAI += 3;
+        p.INE += 2;
+        p.STR -= 1;
+        incorrect_choice = false;
+      break;
 
-		case 3:
-		{
-			cout<<"\nYou are a Half-Elf"<<endl;
-			p.race = "Half-Elf";
-			p.FAI += 3;
-			p.INE += 2;
-			p.STR -= 1;			
-		}
-		break;
+      case 4:
+        cout << "\nYou are a Half-Orc" << endl;
+        p.race = "Half-Orc";
+        p.DEX += 2;
+        p.VIT += 3;
+        p.INE -= 1;
+        incorrect_choice = false;
+      break;
 
-		case 4:
-		{
-			cout<<"\nYou are a Half-Orc"<<endl;
-			p.race = "Half-Orc";
-			p.DEX += 2;
-			p.VIT += 3;
-			p.INE -= 1;
-		}
-		break;
+      case 5:
+        cout << "\nYou are a Half-Lizard" << endl;
+        p.race = "Half-Lizard";
+        p.DEX += 1;
+        p.STA += 3;
+        incorrect_choice = false;
+      break;
 
-		case 5:
-		{
-			cout<<"\nYou are a Half-Lizard"<<endl;
-			p.race = "Half-Lizard";
-			p.DEX += 1;
-			p.STA += 3;
-		}
-		break;
+      case 6:
+        cout << "\nYou are an Elf" << endl;
+        p.race = "Elf";
+        p.FAI += 3;
+        p.INE += 3;
+        p.STR -= 1;
+        p.VIT -= 1;
+        incorrect_choice = false;
+      break;
 
-		case 6:
-		{
-			cout<<"\nYou are an Elf"<<endl;
-			p.race = "Elf";
-			p.FAI += 3;
-			p.INE += 3;
-			p.STR -= 1;
-			p.VIT -= 1;
-		}
-		break;
-
-		default:
-		{
-			cout<<"\nThat isn't a valid choice here"<<endl;
-
-			goto correct;
-		}
-		break;
-	}
+      default:
+        cout << "\nThat isn't a valid choice here" << endl;
+      break;
+    }
+  } while (incorrect_choice);
 
 	p.setattributes();
 
 	line();
 }
 
-int playerclass(player&p)
+int playerclass(player &p)
 {
 	cout<<"\n1. Berserker"<<endl;
 	cout<<"\n2. Battlemage"<<endl;
@@ -115,14 +106,14 @@ int playerclass(player&p)
 	cout<<"\n8. Spell-Sword"<<endl;
 	cout<<"\n9. Pyromancer"<<endl;
 	cout<<"\n10. Adventurer"<<endl;
-	
+
 	int choice;
-	
+
 	cout<<"\nInput choice : ";
 	cin>>choice;
-	
-	system("cls");
-	
+
+	clear();
+
 	c = GREEN;
 	setcolor();
 
@@ -142,7 +133,7 @@ int playerclass(player&p)
 			p.luck = 2;
 
 			p.no_hp = 8;
-			
+
 			p.w.name = "Iron Mace";
 			p.w.damage = 50;
 			p.w.weight = 24;
@@ -150,7 +141,7 @@ int playerclass(player&p)
 			p.w.dh = true;
 			p.w.type = HV_BLUDGE;
 			p.w.material = IRON;
-			
+
 			p.a.name = "Heavy Chainmail Armor";
 			p.a.defense = 10;
 			p.a.weight = 10;
@@ -176,7 +167,7 @@ int playerclass(player&p)
 			p.luck = 2;
 
 			p.no_hp = 10;
-			
+
 			p.w.name= "Blade of the Magi";
 			p.w.damage = 16;
 			p.w.weight = 12;
@@ -197,7 +188,7 @@ int playerclass(player&p)
 			p.s.INE += 4;
 		}
 		break;
-		
+
 		case 3:
 		{
 			cout<<"\nYou chose Class Herald"<<endl;
@@ -212,7 +203,7 @@ int playerclass(player&p)
 			p.luck = 3;
 
 			p.no_hp = 12;
-			
+
 			p.w.name= "Iron Spear";
 			p.w.damage = 20;
 			p.w.weight = 10;
@@ -221,7 +212,7 @@ int playerclass(player&p)
 			p.w.dh = false;
 			p.w.type = SPEAR;
 			p.w.material = IRON;
-			
+
 			p.a.name = "Light Iron Armor";
 			p.a.defense = 5;
 			p.a.weight = 5;
@@ -234,7 +225,7 @@ int playerclass(player&p)
 			p.s.INE += 4;
 		}
 		break;
-		
+
 		case 4:
 		{
 			cout<<"\nYou chose Class Knight"<<endl;
@@ -249,7 +240,7 @@ int playerclass(player&p)
 			p.luck = 2;
 
 			p.no_hp = 10;
-			
+
 			p.w.name= "Rusty Sword";
 			p.w.damage = 30;
 			p.w.weight = 15;
@@ -258,7 +249,7 @@ int playerclass(player&p)
 			p.w.dh = false;
 			p.w.type = SWORD;
 			p.w.material = IRON;
-			
+
 			p.a.name = "Heavy Iron Armor";
 			p.a.defense = 8;
 			p.a.weight = 9;
@@ -286,7 +277,7 @@ int playerclass(player&p)
 			p.luck = 3;
 
 			p.no_hp = 8;
-			
+
 			p.w.name= "Iron Sword";
 			p.w.damage = 20;
 			p.w.weight = 12;
@@ -294,7 +285,7 @@ int playerclass(player&p)
 			p.w.dh = false;
 			p.w.type = SWORD;
 			p.w.material = IRON;
-			
+
 			p.a.name = "Heavy Cloth Armor";
 			p.a.defense = 4;
 			p.a.weight = 4;
@@ -308,7 +299,7 @@ int playerclass(player&p)
 			p.s.DEX += 2;
 		}
 		break;
-		
+
 		case 6:
 		{
 			cout<<"\nYou chose Class Rogue"<<endl;
@@ -323,7 +314,7 @@ int playerclass(player&p)
 			p.luck = 8;
 
 			p.no_hp = 16;
-			
+
 			p.w.name= "Rusty Dagger";
 			p.w.damage = 10;
 			p.w.weight = 2;
@@ -332,7 +323,7 @@ int playerclass(player&p)
 			p.w.dh = false;
 			p.w.type = DAGGER;
 			p.w.material = IRON;
-			
+
 			p.a.name = "Leather Clothes";
 			p.a.defense = 2;
 			p.a.weight = 0;
@@ -359,7 +350,7 @@ int playerclass(player&p)
 			p.luck = 4;
 
 			p.no_hp = 16;
-			
+
 			p.w.name= "Eastern Iron Sword";
 			p.w.damage = 18;
 			p.w.weight = 11;
@@ -368,11 +359,11 @@ int playerclass(player&p)
 			p.w.dh = false;
 			p.w.type = SWORD;
 			p.w.material = IRON;
-			
+
 			p.a.name = "Leather Clothes";
 			p.a.defense = 2;
 			p.a.weight = 0;
-			p.a.STA += 4;	
+			p.a.STA += 4;
 
 			p.s.name = "Leather Shield";
 			p.s.defense = 4;
@@ -395,7 +386,7 @@ int playerclass(player&p)
 			p.luck = 4;
 
 			p.no_hp = 10;
-			
+
 			p.w.name= "Iron Wizard Blade";
 			p.w.damage = 10;
 			p.w.weight = 4;
@@ -404,7 +395,7 @@ int playerclass(player&p)
 			p.w.dh = false;
 			p.w.type = DAGGER;
 			p.w.material = IRON;
-			
+
 			p.a.name = "Leather Clothes";
 			p.a.defense = 2;
 			p.a.weight = 0;
@@ -416,7 +407,7 @@ int playerclass(player&p)
 			p.s.DEX += 4;
 		}
 		break;
-		
+
 		case 9:
 		{
 			cout<<"\nYou choose Class Pyromancer"<<endl;
@@ -431,7 +422,7 @@ int playerclass(player&p)
 			p.luck = 3;
 
 			p.no_hp = 6;
-			
+
 			p.w.name= "Walking Stick";
 			p.w.damage = 1;
 			p.w.weight = 2;
@@ -440,7 +431,7 @@ int playerclass(player&p)
 			p.w.dh = true;
 			p.w.type = STAFF;
 			p.w.material = WOOD;
-			
+
 			p.a.name = "Plain Robes";
 			p.a.defense = 1;
 			p.a.weight = 0;
@@ -467,7 +458,7 @@ int playerclass(player&p)
 			p.luck = 2;
 
 			p.no_hp = 16;
-			
+
 			p.w.name= "Rusty Iron Sword";
 			p.w.damage = 17;
 			p.w.weight = 10;
@@ -476,7 +467,7 @@ int playerclass(player&p)
 			p.w.dh = false;
 			p.w.type = SWORD;
 			p.w.material = IRON;
-			
+
 			p.a.name = "Heavy Cloth Armor";
 			p.a.defense = 4;
 			p.a.weight = 4;
@@ -494,8 +485,8 @@ int playerclass(player&p)
 	addplayerstats_armors(p);
 	addplayerstats_shields(p);
 
-	p.setattributes();	
-	
+	p.setattributes();
+
 	c = WHITE;
 	setcolor();
 
@@ -504,7 +495,7 @@ int playerclass(player&p)
 
 int custom_character(player&p)
 {
-	int total = 0, choice_STR = 0, choice_VIT = 0, choice_DEX = 0, choice_STA = 0, choice_FAI = 0, choice_INE = 0, choice_weapon = 0, choice_armor = 0; 
+	int total = 0, choice_STR = 0, choice_VIT = 0, choice_DEX = 0, choice_STA = 0, choice_FAI = 0, choice_INE = 0, choice_weapon = 0, choice_armor = 0;
 
 	cout<<"\nPlease set your stats";
 
@@ -564,7 +555,7 @@ int custom_character(player&p)
 
 	weapon temp1, temp2, temp3, temp4, temp5;
 
-	cout<<"\n1. Iron Mace"; 
+	cout<<"\n1. Iron Mace";
 
 	temp1.name = "Iron Mace";
 	temp1.damage = 50;
@@ -576,7 +567,7 @@ int custom_character(player&p)
 
 	display_weaponstats(temp1); cout<<endl;
 
-	cout<<"\n2. Rusty Sword"; 
+	cout<<"\n2. Rusty Sword";
 
 	temp2.name = "Rusty Sword";
 	temp2.damage = 30;
@@ -589,7 +580,7 @@ int custom_character(player&p)
 
 	display_weaponstats(temp2); cout<<endl;
 
-	cout<<"\n3. Rusty Dagger"; 
+	cout<<"\n3. Rusty Dagger";
 
 	temp3.name = "Rusty Dagger";
 	temp3.damage = 10;
@@ -602,7 +593,7 @@ int custom_character(player&p)
 
 	display_weaponstats(temp3); cout<<endl;
 
-	cout<<"\n4. Iron Wizard Blade"; 
+	cout<<"\n4. Iron Wizard Blade";
 
 	temp4.name = "Iron Wizard Blade";
 	temp4.damage = 10;
@@ -615,7 +606,7 @@ int custom_character(player&p)
 
 	display_weaponstats(temp4); cout<<endl;
 
-	cout<<"\n5. Walking Stick"; 
+	cout<<"\n5. Walking Stick";
 
 	temp5.name = "Walking Stick";
 	temp5.damage = 1;
@@ -708,7 +699,7 @@ int custom_character(player&p)
 	addplayerstats_armors(p);
 	addplayerstats_shields(p);
 
-	p.setattributes();	
+	p.setattributes();
 
 	line();
 
@@ -718,12 +709,12 @@ int custom_character(player&p)
 int enemyclass1(enemy&e)
 {
 	srand(time(0));
-	
+
 	int echoice = (rand () % 8);
-	
+
 	e.dodge = 0;
 	e.sdodge = 0;
-	
+
 	switch(echoice)
 	{
 		case 0:
@@ -739,7 +730,7 @@ int enemyclass1(enemy&e)
 			e.type = BEAST;
 		}
 		break;
-		
+
 		case 1:
 		{
 			e.name = "Zombie Lizard";
@@ -753,7 +744,7 @@ int enemyclass1(enemy&e)
 			e.type = UNHOLY;
 		}
 		break;
-		
+
 		case 2:
 		{
 			e.name = "Feral Rabbit";
@@ -768,7 +759,7 @@ int enemyclass1(enemy&e)
 			e.type = BEAST;
 		}
 		break;
-		
+
 		case 3:
 		{
 			e.name = "Skeleton";
@@ -840,19 +831,19 @@ int enemyclass1(enemy&e)
 	}
 
 	e.maxHP = e.HP;
-	
+
 	return 0;
 }
 
 int enemyclass2(enemy&e)
 {
 	srand(time(0));
-	
+
 	int echoice = (rand () % 9);
-	
+
 	e.dodge = 0;
 	e.sdodge = 0;
-	
+
 	switch(echoice)
 	{
 		case 0:
@@ -868,21 +859,21 @@ int enemyclass2(enemy&e)
 			e.type = UNHOLY;
 		}
 		break;
-		
+
 		case 1:
 		{
 			e.name = "Giant Crab";
 			e.HP = 2000;
 			e.damage = 75;
 			e.cdamage = 200;
-			
+
 			e.nattack = "BODY SLAM";
 			e.cattack = "CRUSTACEAN CLAW";
 
 			e.type = BEAST;
 		}
 		break;
-		
+
 		case 2:
 		{
 			e.name = "Vulture";
@@ -897,7 +888,7 @@ int enemyclass2(enemy&e)
 			e.type = BEAST;
 		}
 		break;
-		
+
 		default:
 		{
 			e.name = "Undead Viking";
@@ -970,11 +961,11 @@ int enemyclass2(enemy&e)
 	}
 
 	e.maxHP = e.HP;
-	
+
 	return 0;
 }
 
-int enemyclass(player&p,enemy&e)
+void enemyclass(player &p, enemy &e)
 {
 	switch(p.level)
 	{
@@ -995,7 +986,7 @@ int enemyclass(player&p,enemy&e)
 int levelup(player&p)
 {
 	int choice;
-	
+
 	int xp_STR, xp_VIT, xp_DEX, xp_STA, xp_FAI, xp_INE;
 
 	xp_STR = 100;
@@ -1021,12 +1012,12 @@ int levelup(player&p)
 		cout<<"\n5. Faith +1 : "<<xp_FAI<<endl;
 		cout<<"\n6. Intelligence +1 : "<<xp_FAI<<endl;
 		cout<<"\n7. Exit"<<endl;
-		
+
 		cout<<"\nXP : "<<p.xp<<endl;
-		
+
 		cout<<"\nInput choice : ";
 		cin>>choice;
-		
+
 		switch(choice)
 		{
 			case 1 :
@@ -1044,7 +1035,7 @@ int levelup(player&p)
 				else
 				{
 					c = RED;
-					setcolor();	
+					setcolor();
 
 					cout<<"\nXP too low"<<endl;
 
@@ -1069,7 +1060,7 @@ int levelup(player&p)
 				else
 				{
 					c = RED;
-					setcolor();	
+					setcolor();
 
 					cout<<"\nXP too low"<<endl;
 
@@ -1094,7 +1085,7 @@ int levelup(player&p)
 				else
 				{
 					c = RED;
-					setcolor();	
+					setcolor();
 
 					cout<<"\nXP too low"<<endl;
 
@@ -1119,7 +1110,7 @@ int levelup(player&p)
 				else
 				{
 					c = RED;
-					setcolor();	
+					setcolor();
 
 					cout<<"\nXP too low"<<endl;
 
@@ -1144,7 +1135,7 @@ int levelup(player&p)
 				else
 				{
 					c = RED;
-					setcolor();	
+					setcolor();
 
 					cout<<"\nXP too low"<<endl;
 
@@ -1169,7 +1160,7 @@ int levelup(player&p)
 				else
 				{
 					c = RED;
-					setcolor();	
+					setcolor();
 
 					cout<<"\nXP too low"<<endl;
 
@@ -1195,7 +1186,7 @@ int levelup(player&p)
 	setcolor();
 }
 
-int log_raws(player&p)
+void log_raws(player &p)
 {
 	cout<<"\nDamage : "<<p.damage<<endl;
 	cout<<"\nMax HP : "<<p.maxHP<<endl;
@@ -1218,13 +1209,13 @@ int logging(player&p)
 
 	c = WHITE;
 	setcolor();
-	
+
 	cout<<"\nName : "<<p.name<<endl;
 	cout<<"\nPlaystyle : "<<p.race<<" "<<p.pclass<<endl;
 
 	cout<<"\nHealth : "; printH(p.HP,p.maxHP);
 	cout<<"\nMana : "; printM(p.mana, p.maxM);
-	cout<<"\nAbility : "; printA(p.ability_point, 5); 
+	cout<<"\nAbility : "; printA(p.ability_point, 5);
 	cout<<"\nStress : "; printS(p.stress, p.stress_limit);
 
 	cout<<"\nStrength : "<<p.STR;
@@ -1291,7 +1282,7 @@ int logging(player&p)
 
 		c = WHITE;
 		setcolor();
-		
+
 		cout<<" ]";
 	}
 
@@ -1306,7 +1297,7 @@ int logging(player&p)
 
 		c = WHITE;
 		setcolor();
-		
+
 		cout<<" ]";
 	}
 	cout<<endl;
@@ -1342,7 +1333,7 @@ int logging(player&p)
 
 		c = WHITE;
 		setcolor();
-		
+
 		cout<<" ]";
 	}
 
@@ -1357,7 +1348,7 @@ int logging(player&p)
 
 		c = WHITE;
 		setcolor();
-		
+
 		cout<<" ]";
 	}
 
@@ -1372,7 +1363,7 @@ int logging(player&p)
 
 		c = WHITE;
 		setcolor();
-		
+
 		cout<<" ]";
 	}
 	cout<<endl;
@@ -1390,7 +1381,7 @@ int logging(player&p)
 
 		c = WHITE;
 		setcolor();
-		
+
 		cout<<" ]";
 	}
 
@@ -1405,7 +1396,7 @@ int logging(player&p)
 
 		c = WHITE;
 		setcolor();
-		
+
 		cout<<" ]";
 	}
 
@@ -1420,7 +1411,7 @@ int logging(player&p)
 
 		c = WHITE;
 		setcolor();
-		
+
 		cout<<" ]";
 	}
 	cout<<endl;
@@ -1431,33 +1422,33 @@ int logging(player&p)
 
 	c = GREEN;
 	setcolor();
-	
+
 	cout<<"\nPlayer Items"<<endl;
 	cout<<endl;
 
 	c = WHITE;
 	setcolor();
-	
+
 	cout<<"\nWeapon : "<<p.w.name; display_weaponstats(p.w); cout<<endl;
 	cout<<"\nArmor : "<<p.a.name; display_armorstats(p.a); cout<<endl;
 	cout<<"\nShield : "<<p.s.name; if(p.w.dh == false) {display_shieldstats(p.s);} cout<<endl;
 	cout<<"\nNo of Healing Potions : "<<p.i.hp<<endl;
 	cout<<"\nMoney : "<<p.i.money<<endl;
 	cout<<endl;
-	
+
 	cout<<"\nFree Space in Inventory : "<<endl;
 	cout<<"\nWeapons : "<<5-p.i.weapons<<endl;
 	cout<<"\nArmor : "<<2-p.i.armors<<endl;
-	
+
 	return 0;
 }
 
-int shop(player&p)
+void shop(player &p)
 {
 	srand(time(0));
-	
+
 	int check = 1;
-	
+
 	while(check == 1)
 	{
 		cout<<"\nBlacksmith : Welcome back lad. How may I help?"<<endl;
@@ -1468,14 +1459,14 @@ int shop(player&p)
 		cout<<"\n4. Buy Healing Potions (5) : 500 Coins"<<endl;
 		cout<<"\n5. Buy Lucky Charm (Luck increases by 2) : 250 Coins"<<endl;
 		cout<<"\n6. Exit"<<endl;
-		
+
 		cout<<"\nMoney : "<<p.i.money<<endl;
-		
+
 		cout<<"\nInput choice : ";
 
 		int choice;
 		cin>>choice;
-		
+
 		switch(choice)
 		{
 			case 1:
@@ -1489,17 +1480,17 @@ int shop(player&p)
 					p.w.damage = (p.w.damage * 125)/100;
 					p.i.money -= 500;
 				}
-						
+
 				else
 				{
 					c = RED;
 					setcolor();
 
 					cout<<"\nMoney too low"<<endl;
-				}		
+				}
 			}
 			break;
-			
+
 			case 2:
 			{
 				if(p.i.money >= 250)
@@ -1512,17 +1503,17 @@ int shop(player&p)
 					if(p.w.weight > 0) p.w.weight -= 1; else p.w.weight = 0;
 					p.i.money -= 500;
 				}
-						
+
 				else
 				{
 					c = RED;
 					setcolor();
 
 					cout<<"\nMoney too low"<<endl;
-				}	
+				}
 			}
 			break;
-			
+
 			case 3:
 			{
 				if(p.i.money >= 500)
@@ -1534,17 +1525,17 @@ int shop(player&p)
 					p.a.defense = (p.a.defense*125)/100;
 					p.i.money -= 500;
 				}
-						
+
 				else
 				{
 					c = RED;
 					setcolor();
 
 					cout<<"\nMoney too low"<<endl;
-				}	
+				}
 			}
 			break;
-			
+
 			case 4:
 			{
 				if(p.i.money >= 500)
@@ -1556,17 +1547,17 @@ int shop(player&p)
 					p.i.hp += 5;
 					p.i.money -= 500;
 				}
-						
+
 				else
 				{
 					c = RED;
 					setcolor();
 
 					cout<<"\nMoney too low"<<endl;
-				}		
+				}
 			}
 			break;
-			
+
 			case 5:
 			{
 				if(p.i.money >= 250)
@@ -1578,55 +1569,52 @@ int shop(player&p)
 					p.luck += 5;
 					p.i.money -= 500;
 				}
-						
+
 				else
 				{
 					c = RED;
 					setcolor();
 
 					cout<<"\nMoney too low"<<endl;
-				}	
+				}
 			}
 			break;
-			
+
 			case 6:
-			{
 				line();
 				check = 0;
-				return 0;
-			}
-			break;
+				return;
 		}
-		
+
 		line();
 
-		
+
 		c = WHITE;
 		setcolor();
 	}
 }
 
-int library()
+void library()
 {
-	int choice,check = 1;
-	
+	int choice, check = 1;
+
 	cout<<"\nYou come to the library"<<endl;
-	
+
 	while(check == 1)
 	{
 		cout<<"\nWhich manuscript would you like to read?"<<endl;
-		
+
 		cout<<"\n1. The Attributes"<<endl;
 		cout<<"\n2. Weapons and Armor"<<endl;
 		cout<<"\n3. Dungeons"<<endl;
 		cout<<"\n4. Stress and Stress Management"<<endl;
 		cout<<"\n5. Exit"<<endl;
-		
+
 		cout<<"\nInput choice : ";
 		cin>>choice;
-		
-		system("cls");
-		
+
+		clear();
+
 		switch(choice)
 		{
 			case 1:
@@ -1644,7 +1632,7 @@ int library()
 				cout<<"\n7. Intelligence controls your general magical abilities, as well as combat magic"<<endl;
 			}
 			break;
-			
+
 			case 2:
 			{
 				cout<<"\nWeapons and Armor"<<endl;
@@ -1655,10 +1643,10 @@ int library()
 				cout<<"\n2. The heavier a weapon, the lesser accurate it would be"<<endl;
 				cout<<"\n3. The heavier an armor, the lesser likely you are to dodge an enemy's attack"<<endl;
 				cout<<"\n4. You can hold upto 5 weapons and 2 armors in your inventory, and can switch between weapons freely"<<endl;
-				cout<<"\n5. Weapons, armors, and shields also hold stats, which get added to your own stats, effectively giving you stat boosts depending on the weapon you hold"<<endl;					
+				cout<<"\n5. Weapons, armors, and shields also hold stats, which get added to your own stats, effectively giving you stat boosts depending on the weapon you hold"<<endl;
 			}
 			break;
-			
+
 			case 3:
 			{
 				cout<<"\nDungeons"<<endl;
@@ -1667,7 +1655,7 @@ int library()
 
 				cout<<"\n1. Dungeons are the main areas of the game, containing enemies and loot"<<endl;
 				cout<<"\n2. Each dungeon has a Collosi at the end of it, after 20 chunks"<<endl;
-				cout<<"\n3. Dungeons also have random events such as finding pots, traps, and mini-bosses"<<endl;	
+				cout<<"\n3. Dungeons also have random events such as finding pots, traps, and mini-bosses"<<endl;
 			}
 			break;
 
@@ -1681,12 +1669,9 @@ int library()
 				cout<<"\n2. Stress can affect combat heavily, and if you reach your stress limit, a panic attack occurs and all your stats go down to 5"<<endl;
 				cout<<"\n3. Stress can be removed by drinking ales[-5 stress] and healing potions[-1 stress]"<<endl;
 			}
-			
+
 			case 5:
-			{
-				return 0;
-			}
-			break;
+				return;
 		}
 
 		line();

@@ -1,12 +1,13 @@
 #pragma once
 
-#include"resources.h"
-#include"objects.h"
+#include "resources.h"
+#include "objects.h"
+#include "textart.h"
 
-int loot_potion(player&p)
+void loot_potion(player &p)
 {
 	srand(time(0));
-	
+
 	int chance = (rand () % 5);
 
 	c = GREEN;
@@ -17,32 +18,33 @@ int loot_potion(player&p)
 
 	c = WHITE;
 	setcolor();
-	
+
 	switch(chance)
 	{
-		default:
-		{
-			cout<<"\nYou found a Health Potion"<<endl;
-			
-			p.i.hp++;
-			
-			cout<<"\nNo of Health Potions : "<<p.i.hp<<endl;
-		}
-		break;
-
-		case 1: case 2:
+		case 1:
+    case 2:
 		{
 			cout<<"\nYou found an Ale"<<endl;
 
 			p.i.sp++;
 
-			cout<<"\nNo of Ales : "<<p.i.sp<<endl;			
+			cout<<"\nNo of Ales : "<<p.i.sp<<endl;
 		}
 		break;
+
+    default:
+    {
+      cout<<"\nYou found a Health Potion"<<endl;
+
+      p.i.hp++;
+
+      cout<<"\nNo of Health Potions : "<<p.i.hp<<endl;
+    }
+    break;
 	}
 }
 
-int display_weaponstats(weapon&w)
+void display_weaponstats(weapon &w)
 {
 	cout<<" [ Damage : ";
 
@@ -148,7 +150,7 @@ int display_weaponstats(weapon&w)
 	setcolor();
 }
 
-int loot_weapon(player&p)
+void loot_weapon(player &p)
 {
 	weapon temp, own;
 	int choice, weaponslot;
@@ -163,26 +165,26 @@ int loot_weapon(player&p)
 
 	c = WHITE;
 	setcolor();
-	
+
 	temp = weaponlist(temp,p);
-	
-	cout<<"\nYou found a "<<temp.name; display_weaponstats(temp); 
+
+	cout<<"\nYou found a "<<temp.name; display_weaponstats(temp);
 	cout<<endl;
 
 	cout<<"\nCurrent Weapon : "<<p.w.name; display_weaponstats(p.w);
 	cout<<endl;
-	
+
 	if(p.STR - p.w.STR >= temp.weight)
 	{
 		cout<<"\nDo you pick up the "<<temp.name<<"?"<<endl;
 		cout<<"\n1. Yes"<<endl;
 		cout<<"\n2. No"<<endl;
-		
+
 		cout<<"\nInput choice : ";
 		cin>>choice;
 
-		system("cls");
-		
+		clear();
+
 		switch(choice)
 		{
 			case 1:
@@ -199,18 +201,18 @@ int loot_weapon(player&p)
 
 					p.s.name = "No Shield";
 				}
-				
+
 				if(p.i.weapons < 5)
 				{
 					cout<<"\nYou store your current weapon in your inventory"<<endl;
-					
+
 					weaponslot = p.i.weapons;
 
 					p.i.iw[weaponslot] = own;
 
 					p.i.weapons++;
 				}
-				
+
 				else
 				{
 					cout<<"\nYou drop your current weapon"<<endl;
@@ -221,7 +223,7 @@ int loot_weapon(player&p)
 				addplayerstats_weapons(p);
 			}
 			break;
-			
+
 			case 2:
 			{
 				if(p.i.weapons < 5)
@@ -234,11 +236,11 @@ int loot_weapon(player&p)
 
 					p.i.weapons++;
 				}
-				
+
 				else
 				{
 					cout<<"\nYou leave the weapon"<<endl;
-				}	
+				}
 			}
 			break;
 		}
@@ -256,7 +258,7 @@ int loot_weapon(player&p)
 	setcolor();
 }
 
-int display_armorstats(armor&a)
+void display_armorstats(armor &a)
 {
 	cout<<" [ Defence : ";
 
@@ -343,7 +345,7 @@ int display_armorstats(armor&a)
 	}
 }
 
-int loot_armor(player&p)
+void loot_armor(player &p)
 {
 	armor temp, own;
 	int choice, armorslot;
@@ -358,9 +360,9 @@ int loot_armor(player&p)
 
 	c = WHITE;
 	setcolor();
-	
+
 	temp = armorlist(temp,p);
-	
+
 	cout<<"\nYou found "<<temp.name; display_armorstats(temp);
 	cout<<endl;
 
@@ -372,20 +374,20 @@ int loot_armor(player&p)
 		cout<<"\nDo you pick up the "<<temp.name<<"?"<<endl;
 		cout<<"\n1. Yes"<<endl;
 		cout<<"\n2. No"<<endl;
-		
+
 		cout<<"\nInput choice : ";
 		cin>>choice;
 
-		system("cls");
-		
+		clear();
+
 		switch(choice)
 		{
 			case 1:
 			{
 				cout<<"\nYou picked up the armor"<<endl;
-				
+
 				p.a = temp;
-				
+
 				if(p.i.armors < 2)
 				{
 					cout<<"\nYou store your current armor in your inventory"<<endl;
@@ -396,7 +398,7 @@ int loot_armor(player&p)
 
 					p.i.armors++;
 				}
-				
+
 				else
 				{
 					cout<<"\nYou drop your current armor"<<endl;
@@ -407,7 +409,7 @@ int loot_armor(player&p)
 				addplayerstats_armors(p);
 			}
 			break;
-			
+
 			case 2:
 			{
 				if(p.i.armors < 2)
@@ -420,11 +422,11 @@ int loot_armor(player&p)
 
 					p.i.armors++;
 				}
-				
+
 				else
 				{
 					cout<<"\nYou leave the armor"<<endl;
-				}	
+				}
 			}
 			break;
 		}
@@ -442,7 +444,7 @@ int loot_armor(player&p)
 	setcolor();
 }
 
-int display_shieldstats(shield&w)
+void display_shieldstats(shield &w)
 {
 	cout<<" [ Defence : ";
 
@@ -529,7 +531,7 @@ int display_shieldstats(shield&w)
 	}
 }
 
-int loot_shield(player&p)
+void loot_shield(player &p)
 {
 	shield temp, own;
 	int choice;
@@ -544,26 +546,26 @@ int loot_shield(player&p)
 
 	c = WHITE;
 	setcolor();
-	
+
 	temp = shieldlist(temp,p);
-	
-	cout<<"\nYou found a "<<temp.name; display_shieldstats(temp); 
+
+	cout<<"\nYou found a "<<temp.name; display_shieldstats(temp);
 	cout<<endl;
 
 	cout<<"\nCurrent Shield : "<<p.s.name; display_shieldstats(p.s);
 	cout<<endl;
-	
+
 	if((p.STR - p.s.STR)/3 >= temp.weight && p.w.dh == false)
 	{
 		cout<<"\nDo you pick up the "<<temp.name<<"?"<<endl;
 		cout<<"\n1. Yes"<<endl;
 		cout<<"\n2. No"<<endl;
-		
+
 		cout<<"\nInput choice : ";
 		cin>>choice;
 
-		system("cls");
-		
+		clear();
+
 		switch(choice)
 		{
 			case 1:
@@ -579,7 +581,7 @@ int loot_shield(player&p)
 				addplayerstats_shields(p);
 			}
 			break;
-			
+
 			case 2:
 			{
 				cout<<"\nYou left the shield and moved on"<<endl;
@@ -613,7 +615,7 @@ int loot_shield(player&p)
 	setcolor();
 }
 
-int inventory(player&p)
+void inventory(player &p)
 {
 	int choice, wchoice, weaponslot, armorslot;
 	weapon wown;
@@ -653,7 +655,11 @@ int inventory(player&p)
 
 			switch(wchoice)
 			{
-				case 1: case 2: case 3: case 4: case 5:
+				case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
 				{
 					weaponslot  = wchoice - 1;
 
@@ -683,7 +689,11 @@ int inventory(player&p)
 				}
 				break;
 
-				case 10: case 20: case 30: case 40: case 50:
+				case 10:
+        case 20:
+        case 30:
+        case 40:
+        case 50:
 				{
 					weaponslot  = (wchoice/10)- 1;
 
@@ -699,12 +709,8 @@ int inventory(player&p)
 				}
 
 				default:
-				{
 					cout<<"\nYou do not change your current weapon"<<endl;
-
-					return 0;
-				}
-				break;
+          return;
 			}
 		}
 		break;
@@ -717,7 +723,7 @@ int inventory(player&p)
 			{
 				cout<<"\nSlot "<<i + 1<<" : "<<p.i.ia[i].name; display_armorstats(p.i.ia[i]);
 				cout<<endl;
-			}	
+			}
 
 			cout<<"\nWhich armor would you like to equip [Enter 10x the choice to throw away the armor]?"<<endl;
 
@@ -726,7 +732,8 @@ int inventory(player&p)
 
 			switch(wchoice)
 			{
-				case 1: case 2: 
+				case 1:
+        case 2:
 				{
 					armorslot  = wchoice - 1;
 
@@ -741,7 +748,11 @@ int inventory(player&p)
 				}
 				break;
 
-				case 10: case 20: case 30: case 40: case 50:
+				case 10:
+        case 20:
+        case 30:
+        case 40:
+        case 50:
 				{
 					armorslot  = (wchoice/10)- 1;
 
@@ -756,12 +767,8 @@ int inventory(player&p)
 				}
 
 				default:
-				{
 					cout<<"\nYou do not change your current armor"<<endl;
-
-					return 0;
-				}
-				break;
+          return;
 			}
 		}
 		break;
@@ -814,7 +821,7 @@ int inventory(player&p)
 
 		case 4:
 		{
-			cout<<"\nYou have "<<p.i.hp<<" health potions"<<endl; 
+			cout<<"\nYou have "<<p.i.hp<<" health potions"<<endl;
 			cout<<"\nDo you use a health potion?"<<endl;
 			cout<<"\n1. Yes"<<endl;
 			cout<<"\n2. No"<<endl;
@@ -841,7 +848,7 @@ int inventory(player&p)
 
 		case 5:
 		{
-			cout<<"\nYou have "<<p.i.sp<<" ales"<<endl; 
+			cout<<"\nYou have "<<p.i.sp<<" ales"<<endl;
 			cout<<"\nDo you use an ale?"<<endl;
 			cout<<"\n1. Yes"<<endl;
 			cout<<"\n2. No"<<endl;
@@ -862,7 +869,7 @@ int inventory(player&p)
 					cout<<"\nYou do not use an ale"<<endl;
 				}
 				break;
-			}	
+			}
 		}
 		break;
 
@@ -873,6 +880,3 @@ int inventory(player&p)
 		break;
 	}
 }
-
-
-

@@ -1,29 +1,47 @@
 #pragma once
 
-#include"resources.h"
-#include"initialization.h"
-#include"battle.h"
-#include"move.h"
-#include"events.h"
+#include "resources.h"
+#include "initialization.h"
+#include "battle.h"
+#include "move.h"
+#include "events.h"
+#include "textart.h"
 
 using namespace std;
 
-int test();
 
-int menu(player&p,int&input)
+void test() {
+  player p;
+  enemy e;
+
+  playerclass(p);
+
+  int crit = 130 / p.DEX;
+
+  int crit_chance = 0;
+
+  for (int i = 0; i < 20; i++) {
+    crit_chance = (rand() % crit);
+    cout << crit_chance << endl;
+  }
+
+  empty();
+}
+
+int menu(player &p, int &input)
 {
 	int choice;
-	
+
 	int check = 1;
-	
+
 	while(check == 1)
 	{
 		c = GREEN;
 		setcolor();
-		
+
 		t = MAINSCREEN;
 		textart();
-                                                                                                                                                                                                                                                                                                 
+
 		c = WHITE;
 		setcolor();
 
@@ -31,16 +49,15 @@ int menu(player&p,int&input)
 		cout<<"\n2. Continue game"<<endl;
 		cout<<"\n3. Controls"<<endl;
 		cout<<"\n4. About"<<endl;
-	
+
 		cout<<"\nInput choice : ";
 		cin>>choice;
 
-		system("cls");
-	
+    clear();
+
 		switch(choice)
 		{
-			case 1: 
-			{
+			case 1:
 				cout<<"\nYou have chosen to start a new game. Please enter the save slot number you want to save in "<<endl;
 				cout<<"\n1. Save Slot 1"<<endl;
 				cout<<"\n2. Save Slot 2"<<endl;
@@ -59,11 +76,8 @@ int menu(player&p,int&input)
 				setcolor();
 
 				return 0;
-			}
-			break;
-				
+
 			case 2:
-			{
 				cout<<"\nPlease enter the save slot to be loaded"<<endl;
 				cout<<"\n1. Save Slot 1"<<endl;
 				cout<<"\n2. Save Slot 2"<<endl;
@@ -90,58 +104,27 @@ int menu(player&p,int&input)
 				setcolor();
 
 				return 0;
-			}
 			break;
 
 			case 3:
-			{
 				cout<<"\nAll controls in the game are menu-based, and use the number keys. Follow on-screen keybinds to play"<<endl;
 				check = 1;
-
 				line();
-			}
 			break;
-		
+
 			case 4:
-			{
 				cout<<"\nInitial design on Turbo C++. Made on C++"<<endl;
-				check =1;
-
+				check = 1;
 				line();
-			}
 			break;
-			
+
 			case 420:
-			{
 				test();
-			}
-			break;
+        return 1;
 
 			default:
-			{
-				//Nothing
-			}
-		}	
+        return 1;
+		}
 	}
+  return 1;
 }
-
-int test()
-{
-	player p;
-	enemy e;
-
-	playerclass(p);
-
-	int crit = 130/p.DEX;
-
-	int crit_chance = 0;
-
-	for(int i = 0; i < 20; i++)
-	{
-		crit_chance = (rand () % crit);
-		cout<<crit_chance<<endl;
-	}
-
-	empty();
-}
-

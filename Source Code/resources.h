@@ -1,54 +1,78 @@
 #pragma once
 
 #include <iostream>
-#include<Windows.h>
-#include<ctime>
-#include<string>
-#include<cstdio>
-#include<cstdlib>
-#include<cmath>
-#include<fstream>
-#include"textart.h"
+
+#include <ctime>
+#include <string>
+#include <cstdio>
+#include <cstdlib>
+#include <cmath>
+#include <fstream>
+
+#ifdef _WIN32
+#include <Windows.h>
+#endif
+
+#include "textart.h"
 
 using namespace std;
 
-enum color {RED, BLUE, GREEN, YELLOW, BLACK, WHITE};
+enum color {
+  RED,
+  BLUE,
+  GREEN,
+  YELLOW,
+  BLACK,
+  WHITE
+};
+
 color c;
 
-enum wtype {HV_BLUDGE = 0, HV_AXE = 1, HV_SWORD = 2, SWORD = 3, SPEAR = 4, AXE = 5, DAGGER = 6, STAFF = 7, HANDS = 8};
+enum wtype {
+  HV_BLUDGE = 0,
+  HV_AXE = 1,
+  HV_SWORD = 2,
+  SWORD = 3,
+  SPEAR = 4,
+  AXE = 5,
+  DAGGER = 6,
+  STAFF = 7,
+  HANDS = 8
+};
 
-enum object_material {WOOD = 0, IRON = 1, BRONZE = 2, COPPER = 3, STEEL = 4, SILVER = 5};
+enum object_material {
+  WOOD = 0,
+  IRON = 1,
+  BRONZE = 2,
+  COPPER = 3,
+  STEEL = 4,
+  SILVER = 5
+};
 
-enum enemytype {BEAST, UNHOLY};
+enum enemytype {
+  BEAST,
+  UNHOLY
+};
 
 int input, temp_wtype, temp_wmat;
 
-int abs(int x, int y)
-{
-	if(x - y >= 0)
-	{
+int abs(int x, int y) {
+	if (x - y >= 0) {
 		return x - y;
 	}
-
-	else
-	{
-		return y - x;
-	}
+  return y - x;
 }
 
-struct shield
-{
+struct shield {
 	string name;
 	int defense;
 	int weight;
 
 	int STR, DEX, FAI, INE;
 
-	shield()
-	{
+	shield() {
 		defense = 1;
 		weight = 0;
-
 		STR = 0;
 		DEX = 0;
 		FAI = 0;
@@ -56,8 +80,7 @@ struct shield
 	}
 };
 
-struct weapon
-{
+struct weapon {
 	string name;
 	int damage;
 	int weight;
@@ -72,8 +95,7 @@ struct weapon
 
 	object_material material;
 
-	weapon()
-	{
+	weapon() {
 		damage = 0;
 		weight = 1;
 
@@ -86,17 +108,14 @@ struct weapon
 	}
 };
 
-struct armor 
-{
+struct armor {
 	string name;
 	int defense;
 	int weight;
 
 	int VIT, STA, FAI, INE;
 
-
-	armor()
-	{
+	armor() {
 		defense = 0;
 		weight = 1;
 
@@ -107,8 +126,7 @@ struct armor
 	}
 };
 
-struct inventory
-{
+struct inventory {
 	int hp;
 	int sp;
 	int money;
@@ -120,8 +138,7 @@ struct inventory
 	shield is;
 };
 
-struct player
-{
+struct player {
 	//Name stuff
 	string name,pclass,race;
 	string playerdone, playerchance, playersuccess;
@@ -129,7 +146,7 @@ struct player
 	int damage_taken;
 	int armor_defence;
 	bool wolf_slayer;
-	
+
 	//Items
 	weapon w;
 	inventory i;
@@ -139,8 +156,8 @@ struct player
 	//Basic Stats
 	int wtype, atype;
 	int HP, maxHP;
-	int STR, VIT, DEX, STA, FAI, INE; 
-	
+	int STR, VIT, DEX, STA, FAI, INE;
+
 	//Deriviative Stats
 	int magic;
 	int damage;
@@ -156,7 +173,7 @@ struct player
 
 	//General Stats
 	char posH[20];
-	int pos; 
+	int pos;
 	int no_hp;
 	int level;
 	int ability_point;
@@ -174,44 +191,46 @@ struct player
 	int smDEX;
 	bool panic_attack;
 
-	int setattributes()
-	{
+	void setattributes() {
 		maxHP = 40 * VIT;
 		HP = maxHP;
 		damage = 2 * STR;
-		if(DEX >= 3) wh = DEX / 3; else wh = 1;
-		if(STA >= 5) dodge = STA / 5; else dodge = 1;
-		stealth = (STA / 5) + 1;
+
+    if (DEX >= 3) wh = DEX / 3;
+    else wh = 1;
+
+    if (STA >= 5) dodge = STA / 5;
+    else dodge = 1;
+
+    stealth = (STA / 5) + 1;
 		maxM = 40 * INE;
 		mana = maxM;
-		if(INE/5 - 1 > 0) spellno = INE/5 - 1; else spellno = 0;
-		fire = 5 * INE;
+
+    if (INE / 5 - 1 > 0) spellno = INE / 5 - 1;
+    else spellno = 0;
+
+    fire = 5 * INE;
 		magic = 10 * FAI;
 
 		stress_limit = VIT * 2;
 
-		if(level >= 1)
-		{
-			smDM = 100/STR;
-			smHP = 100/VIT; 
-			smDEX = 20/DEX; 
+		if (level >= 1) {
+			smDM = 100 / STR;
+			smHP = 100 / VIT;
+			smDEX = 20 / DEX;
 		}
 	}
 
-	int initialize_inventory()
-	{
-		for(int f = 0; f < 5; f++)
-		{
+	void initialize_inventory() {
+		for (int f = 0; f < 5; f++) {
 			i.iw[f].name = "Empty";
 			i.iw[f].damage = 0;
 			i.iw[f].weight = 0;
 			i.iw[f].STR = i.iw[f].DEX = i.iw[f].FAI = i.iw[f].INE = 0;
-
 			i.iw[f].dh = false;
 		}
 
-		for(int f = 0; f < 2; f++)
-		{
+		for (int f = 0; f < 2; f++) {
 			i.ia[f].name = "Empty";
 			i.ia[f].defense = 0;
 			i.ia[f].weight = 0;
@@ -221,12 +240,12 @@ struct player
 		i.is.name = "No Shield";
 	}
 
-	player() //c'est un constructor
-	{
+	player() {
+    //c'est un constructor
 		name = "Default Character";
 		race = "Human";
 		pclass = "Prisoner";
-		wtype = 4; 
+		wtype = 4;
 		atype = 4;
 		luck = 3;
 
@@ -238,7 +257,7 @@ struct player
 		STA = 3;
 		FAI = 3;
 		INE = 3;
-		
+
 		setattributes();
 
 		w.name= "Piece of Wood";
@@ -247,7 +266,7 @@ struct player
 		w.type = HV_BLUDGE;
 		w.dh = true;
 		w.material = WOOD;
-				
+
 		a.name = "Prisoner Rags";
 		a.defense = 2;
 		a.weight = 1;
@@ -268,10 +287,7 @@ struct player
 		i.weapons = 0;
 		i.armors = 0;
 
-		for(int f = 0; f < 20; f++)
-		{
-			posH[f] = '.';
-		}
+		for (int f = 0; f < 20; f++) posH[f] = '.';
 
 		initialize_inventory();
 
@@ -282,8 +298,7 @@ struct player
 	}
 };
 
-struct enemy
-{
+struct enemy {
 	string name;
 	string nattack;
 	string cattack;
@@ -303,8 +318,7 @@ struct enemy
 
 	enemytype type;
 
-	enemy()
-	{
+	enemy() {
 		stunned = 0;
 		bleeding = 0;
 		poisoned = 0;
@@ -313,16 +327,14 @@ struct enemy
 	}
 };
 
-int removeplayerstats_weapons(player&p, weapon&own)
-{
+void removeplayerstats_weapons(player &p, weapon &own) {
 	p.STR -= own.STR;
 	p.DEX -= own.DEX;
 	p.FAI -= own.FAI;
 	p.INE -= own.INE;
 }
 
-int addplayerstats_weapons(player&p)
-{
+void addplayerstats_weapons(player &p) {
 	int HP = p.HP, stress = p.stress, mana = p.mana;
 
 	p.STR += p.w.STR;
@@ -332,21 +344,19 @@ int addplayerstats_weapons(player&p)
 
 	p.setattributes();
 
-	if(HP <= p.maxHP) p.HP = HP;
-	if(stress <= p.stress_limit) p.stress = stress;
-	if(mana <= p.maxM) p.mana = mana;
+	if (HP <= p.maxHP) p.HP = HP;
+	if (stress <= p.stress_limit) p.stress = stress;
+	if (mana <= p.maxM) p.mana = mana;
 }
 
-int removeplayerstats_armors(player&p, armor&own)
-{
+void removeplayerstats_armors(player &p, armor &own) {
 	p.VIT -= own.VIT;
 	p.STA -= own.STA;
 	p.FAI -= own.FAI;
 	p.INE -= own.INE;
 }
 
-int addplayerstats_armors(player&p)
-{
+void addplayerstats_armors(player &p) {
 	int HP = p.HP, stress = p.stress, mana = p.mana;
 
 	p.VIT += p.a.VIT;
@@ -356,21 +366,19 @@ int addplayerstats_armors(player&p)
 
 	p.setattributes();
 
-	if(HP <= p.maxHP) p.HP = HP;
-	if(stress <= p.stress_limit) p.stress = stress;
-	if(mana <= p.maxM) p.mana = mana;
+	if (HP <= p.maxHP) p.HP = HP;
+	if (stress <= p.stress_limit) p.stress = stress;
+	if (mana <= p.maxM) p.mana = mana;
 }
 
-int removeplayerstats_shields(player&p, shield&own)
-{
+void removeplayerstats_shields(player &p, shield &own) {
 	p.STR -= own.STR;
 	p.DEX -= own.DEX;
 	p.FAI -= own.FAI;
 	p.INE -= own.INE;
 }
 
-int addplayerstats_shields(player&p)
-{
+void addplayerstats_shields(player &p) {
 	int HP = p.HP, stress = p.stress, mana = p.mana;
 
 	p.STR += p.s.STR;
@@ -380,29 +388,30 @@ int addplayerstats_shields(player&p)
 
 	p.setattributes();
 
-	if(HP <= p.maxHP) p.HP = HP;
-	if(stress <= p.stress_limit) p.stress = stress;
-	if(mana <= p.maxM) p.mana = mana;
+	if (HP <= p.maxHP) p.HP = HP;
+	if (stress <= p.stress_limit) p.stress = stress;
+	if (mana <= p.maxM) p.mana = mana;
 }
 
-int empty();
+void empty() {
+  cout << endl;
+  #ifdef _WIN32
+  system("pause");
+  #else
+  system("read -r -n1 -p 'Press any key to continue...' key");
+  // int i;
+  // cin >> i;
+  // cin.get();
+  #endif
+}
 
-int line()
-{
+int line() {
 	empty();
-	system("cls");
+	clear();
 	return 0;
 }
 
-int empty()
-{
-	cout<<endl;
-	system("pause");
-	return 0;
-}
-
-int write_data(player&p,string stream)
-{
+void write_data(player &p, string stream) {
 	ofstream savefile(stream);
 
 	//Player Variables
@@ -413,27 +422,19 @@ int write_data(player&p,string stream)
 	savefile << p.a.name << endl;
 	savefile << p.s.name << endl;
 
-	for(int f = 0; f < 5; f++)
-	{
-		savefile << p.i.iw[f].name << endl;
-	}
+	for (int f = 0; f < 5; f++) savefile << p.i.iw[f].name << endl;
 
-	for(int f = 0; f < 2; f++)
-	{
-		savefile << p.i.ia[f].name << endl;
-	}
+	for (int f = 0; f < 2; f++) savefile << p.i.ia[f].name << endl;
 
 	savefile << p.i.is.name << endl;
 
-	for(int f = 0; f < 5; f++)
-	{
+	for (int f = 0; f < 5; f++) {
 		savefile << p.i.iw[f].damage << endl;
 		savefile << p.i.iw[f].weight << endl;
 		savefile << p.i.iw[f].STR << " " << p.i.iw[f].DEX << " " << p.i.iw[f].FAI << " " << p.i.iw[f].INE << endl;
 	}
 
-	for(int f = 0; f < 2; f++)
-	{
+	for (int f = 0; f < 2; f++) {
 		savefile << p.i.ia[f].defense << endl;
 		savefile << p.i.ia[f].weight << endl;
 		savefile << p.i.ia[f].VIT << " " << p.i.ia[f].STA << " " << p.i.ia[f].FAI << " " << p.i.ia[f].INE << endl;
@@ -443,77 +444,22 @@ int write_data(player&p,string stream)
 	savefile << p.i.is.weight << endl;
 	savefile << p.i.is.STR << " " << p.i.is.DEX << " " << p.i.is.FAI << " " << p.i.is.INE << endl;
 
-	for(int f = 0; f < 20; f++)
-	{
-		savefile << p.posH[f]<<endl;
-	}
-	
+	for (int f = 0; f < 20; f++) savefile << p.posH[f] << endl;
+
 	savefile << p.STR << endl;
 	savefile << p.VIT << endl;
 	savefile << p.DEX << endl;
 	savefile << p.STA << endl;
 	savefile << p.FAI << endl;
 	savefile << p.INE << endl;
-	//Weapon Variables
+
+	// Weapon Variables
 	savefile << p.w.damage << endl;
 	savefile << p.w.weight << endl;
 	savefile << p.w.STR << " " << p.w.DEX << " " << p.w.FAI << " " << p.w.INE << endl;
 	savefile << p.w.dh << endl;
-
-	switch(p.w.type)
-	{
-		case 0: temp_wtype = 0;
-		break;
-
-		case 1: temp_wtype = 1;
-		break;
-
-		case 2: temp_wtype = 2;
-		break;
-
-		case 3: temp_wtype = 3;
-		break;
-
-		case 4: temp_wtype = 4;
-		break;
-
-		case 5: temp_wtype = 5;
-		break;
-
-		case 6: temp_wtype = 6;
-		break;
-
-		case 7: temp_wtype = 7;
-		break;
-
-		case 8: temp_wtype = 8;
-		break;
-	}
-
-	savefile << temp_wtype << endl;
-
-	switch(p.w.material)
-	{
-		case 0: temp_wmat = 0;
-		break;
-
-		case 1: temp_wmat = 1;
-		break;
-
-		case 2: temp_wmat = 2;
-		break;
-
-		case 3: temp_wmat = 3;
-		break;
-
-		case 4: temp_wmat = 4;
-		break;
-
-		case 5: temp_wmat = 5;
-		break;
-	}
-
-	savefile << temp_wmat << endl;
+	savefile << p.w.type << endl;
+	savefile << p.w.material << endl;
 
 	//Armor Variables
 	savefile << p.a.defense << endl;
@@ -542,39 +488,29 @@ int write_data(player&p,string stream)
 	savefile.close();
 }
 
-int read_data(player&p,string stream)
-{
+void read_data(player &p, string stream) {
 	ifstream savefile(stream);
 
 	//Player Variables
-	getline(savefile,p.name); 
-	getline(savefile,p.race);
-	getline(savefile,p.pclass);
-	getline(savefile,p.w.name); 
-	getline(savefile,p.a.name);
-	getline(savefile,p.s.name);
+	getline(savefile, p.name);
+	getline(savefile, p.race);
+	getline(savefile, p.pclass);
+	getline(savefile, p.w.name);
+	getline(savefile, p.a.name);
+	getline(savefile, p.s.name);
 
-	for(int f = 0; f < 5; f++)
-	{
-		getline(savefile,p.i.iw[f].name);
-	}
-
-	for(int f = 0; f < 2; f++)
-	{
-		getline(savefile,p.i.ia[f].name);
-	}
+	for (int f = 0; f < 5; f++) getline(savefile, p.i.iw[f].name);
+	for (int f = 0; f < 2; f++) getline(savefile, p.i.ia[f].name);
 
 	getline(savefile,p.i.is.name);
 
-	for(int f = 0; f < 5; f++)
-	{
+	for (int f = 0; f < 5; f++) {
 		savefile >> p.i.iw[f].damage;
 		savefile >> p.i.iw[f].weight;
 		savefile >> p.i.iw[f].STR >> p.i.iw[f].DEX >> p.i.iw[f].FAI >> p.i.iw[f].INE;
 	}
 
-	for(int f = 0; f < 2; f++)
-	{
+	for (int f = 0; f < 2; f++) {
 		savefile >> p.i.ia[f].defense;
 		savefile >> p.i.ia[f].weight;
 		savefile >> p.i.ia[f].VIT >> p.i.ia[f].STA >> p.i.ia[f].FAI >> p.i.ia[f].INE;
@@ -584,10 +520,7 @@ int read_data(player&p,string stream)
 	savefile >> p.i.is.weight;
 	savefile >> p.i.is.STR >> p.i.is.DEX >> p.i.is.FAI >> p.i.is.INE;
 
-	for(int f = 0; f < 20; f++)
-	{
-		savefile >> p.posH[f];
-	}
+	for (int f = 0; f < 20; f++) savefile >> p.posH[f];
 
 	savefile >> p.STR;
 	savefile >> p.VIT;
@@ -595,64 +528,35 @@ int read_data(player&p,string stream)
 	savefile >> p.STA;
 	savefile >> p.FAI;
 	savefile >> p.INE;
+
 	//Weapon Variables
 	savefile >> p.w.damage;
 	savefile >> p.w.weight;
 	savefile >> p.w.STR >> p.w.DEX >> p.w.FAI >> p.w.INE;
 	savefile >> p.w.dh;
-	savefile >> temp_wtype;
-	
-	switch(temp_wtype)
-	{
-		case 0: p.w.type = HV_BLUDGE;
-		break;
 
-		case 1: p.w.type = HV_AXE;
-		break;
+  int wtype_from_file;
+  savefile >> wtype_from_file;
 
-		case 2: p.w.type = HV_SWORD;
-		break;
+       if (wtype_from_file == 0) p.w.type = HV_BLUDGE;
+  else if (wtype_from_file == 1) p.w.type = HV_AXE;
+  else if (wtype_from_file == 2) p.w.type = HV_SWORD;
+  else if (wtype_from_file == 3) p.w.type = SWORD;
+  else if (wtype_from_file == 4) p.w.type = SPEAR;
+  else if (wtype_from_file == 5) p.w.type = AXE;
+  else if (wtype_from_file == 6) p.w.type = DAGGER;
+  else if (wtype_from_file == 7) p.w.type = STAFF;
+  else if (wtype_from_file == 8) p.w.type = HANDS;
 
-		case 3: p.w.type = SWORD;
-		break;
+  int wmat_from_file;
+  savefile >> wmat_from_file;
 
-		case 4: p.w.type = SPEAR;
-		break;
-
-		case 5: p.w.type = AXE;
-		break;
-
-		case 6: p.w.type = DAGGER;
-		break;
-
-		case 7: p.w.type = STAFF;
-		break;
-
-		case 8: p.w.type = HANDS;
-	}
-
-	savefile >> temp_wmat;
-
-	switch(temp_wmat)
-	{
-		case 0: p.w.material = WOOD;
-		break;
-
-		case 1: p.w.material = IRON;
-		break;
-
-		case 2: p.w.material = BRONZE;
-		break;
-
-		case 3: p.w.material = COPPER;
-		break;
-
-		case 4: p.w.material = STEEL;
-		break;
-
-		case 5: p.w.material = SILVER;
-		break;
-	}
+       if (wmat_from_file == 0) p.w.material = WOOD;
+  else if (wmat_from_file == 1) p.w.material = IRON;
+  else if (wmat_from_file == 2) p.w.material = BRONZE;
+  else if (wmat_from_file == 3) p.w.material = COPPER;
+  else if (wmat_from_file == 4) p.w.material = STEEL;
+  else if (wmat_from_file == 5) p.w.material = SILVER;
 
 	//Armor Variables
 	savefile >> p.a.defense;
@@ -679,493 +583,325 @@ int read_data(player&p,string stream)
 	savefile >> p.level;
 }
 
-int setcolor()
-{
-	HANDLE h = GetStdHandle( STD_OUTPUT_HANDLE );
+void setcolor() {
+  #ifdef _WIN32
+  HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 
-	switch(c)
-	{
-		case RED:
-		{
-			SetConsoleTextAttribute(h,FOREGROUND_RED | FOREGROUND_INTENSITY );
-		}
-		break;
+  switch(c) {
+   case RED:
+     SetConsoleTextAttribute(h, FOREGROUND_RED | FOREGROUND_INTENSITY);
+   break;
 
-		case BLUE:
-		{
-			SetConsoleTextAttribute(h,FOREGROUND_BLUE | FOREGROUND_INTENSITY );
-		}
-		break;
+   case BLUE:
+     SetConsoleTextAttribute(h, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+   break;
 
-		case GREEN:
-		{
-			SetConsoleTextAttribute(h,FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		}
-		break;
+   case GREEN:
+     SetConsoleTextAttribute(h, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+   break;
 
-		case YELLOW:
-		{
-			SetConsoleTextAttribute(h,FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_INTENSITY);
-		}
-		break;
+   case YELLOW:
+     SetConsoleTextAttribute(h, FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_INTENSITY);
+   break;
 
-		case BLACK:
-		{
-			SetConsoleTextAttribute(h,0);
-		}
-		break;
+   case BLACK:
+     SetConsoleTextAttribute(h, 0);
+   break;
 
-		case WHITE:
-		{
-			SetConsoleTextAttribute(h,FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-		}
-		break;
-	}
+   case WHITE:
+     SetConsoleTextAttribute(h, FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+   break;
+  }
+  #else
+
+  // TODO
+  // use ansi escape codes to change the text/background colour in the terminal
+
+  #endif
 }
 
-int heal(player&p)
-{
-	int faith_factor = p.FAI/5;
+void heal(player &p) {
+	int faith_factor = p.FAI / 5;
 
-	int heal = ((10 + faith_factor) * 400)/10;
+	int heal = ((10 + faith_factor) * 400) / 10;
 
-	if(p.i.hp > 0)
-	{
-		cout<<"\nYou used a healing potion, and healed up by ";
+	if (p.i.hp > 0) {
+		cout << "\nYou used a healing potion, and healed up by ";
 
 		c = GREEN;
 		setcolor();
 
-		cout<<heal;
+		cout << heal;
 
 		c = WHITE;
 		setcolor();
 
-		cout<<" HP"<<endl;
-							
-		if(p.HP + heal < p.maxHP)
-		{
+		cout <<" HP" << endl;
+
+		if (p.HP + heal < p.maxHP) {
 			p.HP = p.HP + heal;
 			p.i.hp--;
-		}
-							
-		else
-		{
+		} else {
 			p.HP = p.maxHP;
 			p.i.hp--;
 		}
+	} else {
+		cout << "\nYou're out of potions" << endl;
 	}
-						
-	else
-	{
-		cout<<"\nYou're out of potions"<<endl;
-	}
-	
-	cout<<"\nNo of Health Potions : "<<p.i.hp<<endl;
+
+	cout << "\nNo of Health Potions : " << p.i.hp << endl;
 }
 
-int s_heal(player&p)
-{
-	int faith_factor = p.FAI/5;
+void s_heal(player &p) {
+	int faith_factor = p.FAI / 5;
 
 	int stress_heal = 10 + faith_factor;
 
-	if(p.i.sp > 0)
-	{
-		cout<<"\nYou used an ale, and decreased your stress by ";
+	if (p.i.sp > 0) {
+		cout << "\nYou used an ale, and decreased your stress by ";
 
 		c = GREEN;
 		setcolor();
 
-		cout<<stress_heal<<endl;
+		cout << stress_heal << endl;
 
 		c = WHITE;
 		setcolor();
-							
-		if(p.stress - stress_heal > 0)
-		{
+
+		if (p.stress - stress_heal > 0) {
 			p.stress -= stress_heal;
 			p.i.sp--;
-		}
-							
-		else
-		{
+		} else {
 			p.stress = 0;
 			p.i.sp--;
 		}
+	} else {
+		cout << "\nYou're out of ales" << endl;
 	}
-						
-	else
-	{
-		cout<<"\nYou're out of ales"<<endl;
-	}
-	
-	cout<<"\nNo of Ales : "<<p.i.sp<<endl;
+
+	cout << "\nNo of Ales : " << p.i.sp << endl;
 }
 
-int gamesave(player&p,int input)
-{
+void gamesave(player &p, int input) {
 	string stream;
 	p.level++;
 
-	switch(input)
-	{
+	switch (input) {
 		case 1:
-		{
 			stream = "Savefiles/save1.txt";
-		}
 		break;
 
 		case 2:
-		{
 			stream = "Savefiles/save2.txt";
-		}
 		break;
 
 		case 3:
-		{
 			stream = "Savefiles/save3.txt";
-		}
 		break;
 
 		case 4:
-		{
 			stream = "Savefiles/save4.txt";
-		}
 		break;
 
 		case 5:
-		{
 			stream = "Savefiles/save5.txt";
-		}
 		break;
 	}
 
-	write_data(p,stream);
-
+	write_data(p, stream);
 	c = GREEN;
 	setcolor();
-
-	cout<<"\nGame has been saved"<<endl;
-
+	cout << "\nGame has been saved" << endl;
 	c = WHITE;
 	setcolor();
 }
 
-int gameload(player&p,int input)
-{
+void gameload(player &p, int input) {
 	string stream;
 
-	switch(input)
-	{
+	switch (input) {
 		case 1:
-		{
 			stream = "Savefiles/save1.txt";
-		}
 		break;
 
 		case 2:
-		{
 			stream = "Savefiles/save2.txt";
-		}
 		break;
 
 		case 3:
-		{
 			stream = "Savefiles/save3.txt";
-		}
 		break;
 
 		case 4:
-		{
 			stream = "Savefiles/save4.txt";
-		}
 		break;
 
 		case 5:
-		{
 			stream = "Savefiles/save5.txt";
-		}
 		break;
 	}
 
-	read_data(p,stream);
-
+	read_data(p, stream);
 	p.setattributes();
-
 	p.ability_point = 5;
 }
 
-int printH(int HP, int maxHP)
-{
+void printH(int HP, int maxHP) {
 	int bar_size = 50;
-
 	int x = ((HP * bar_size) / maxHP);
 
-	for(int i = 0; i < bar_size + 2; i++)
-	{
-		if(i == 0)
-		{
-			cout<<"[";
-		}
-
-		else if(i == bar_size + 1)
-		{
-			cout<<"]"<<endl;
-		}
-
-		else
-		{
-			if(x > 0)
-			{
+	for (int i = 0, len = bar_size + 2; i < len; i++) {
+		if (i == 0) cout << "[";
+		else if (i == bar_size + 1) cout << "]" << endl;
+		else {
+			if (x > 0) {
 				c = GREEN;
 				setcolor();
-
-				cout<<":";
+				cout << ":";
 				x--;
-			}
-
-			else
-			{
-				cout<<" ";
+			} else {
+				cout << " ";
 			}
 		}
-
 		c = WHITE;
 		setcolor();
 	}
 }
 
-int printM(int mana, int maxM)
-{
+void printM(int mana, int maxM) {
 	int bar_size = 50;
-
 	int x = ((mana * bar_size) / maxM) + 1;
 
-	for(int i = 0; i < bar_size + 2; i++)
-	{
-		if(i == 0)
-		{
-			cout<<"[";
-		}
-
-		else if(i == bar_size + 1)
-		{
-			cout<<"]"<<endl;
-		}
-
-		else
-		{
-			if(x > 0)
-			{
+  for (int i = 0, len = bar_size + 2; i < len; i++) {
+		if (i == 0) cout << "[";
+		else if (i == bar_size + 1) cout << "]" << endl;
+		else {
+			if (x > 0) {
 				c = BLUE;
 				setcolor();
-
-				cout<<":";
+				cout << ":";
 				x--;
-			}
-
-			else
-			{
-				cout<<" ";
+			} else {
+				cout << " ";
 			}
 		}
-
 		c = WHITE;
 		setcolor();
 	}
 }
 
-int printA(int abi, int fac)
-{
+void printA(int abi, int fac) {
 	int x = ((abi * 5) / fac);
 
-	for(int i = 0; i < 7; i++)
-	{
-		if(i == 0)
-		{
-			cout<<"[";
-		}
-
-		else if(i == 6)
-		{
-			cout<<"]"<<endl;
-		}
-
-		else
-		{
-			if(x > 0)
-			{
+	for (int i = 0; i < 7; i++) {
+		if (i == 0) cout << "[";
+		else if (i == 6) cout << "]" << endl;
+		else {
+			if (x > 0) {
 				c = YELLOW;
 				setcolor();
-
-				cout<<">";
+				cout << ">";
 				x--;
-			}
-
-			else
-			{
-				cout<<" ";
+			} else {
+				cout << " ";
 			}
 		}
-
 		c = WHITE;
 		setcolor();
 	}
 }
 
-int printS(int abi, int fac)
-{
+void printS(int abi, int fac) {
 	int bar_size = 30;
-
 	int x = ((abi * bar_size) / fac) + 1;
 
-	for(int i = 0; i < bar_size + 2; i++)
-	{
-		if(i == 0)
-		{
-			cout<<"[";
-		}
-
-		else if(i == bar_size + 1)
-		{
-			cout<<"]"<<endl;
-		}
-
-		else
-		{
-			if(x > 0)
-			{
+	for (int i = 0, len = bar_size + 2; i < len; i++) {
+		if (i == 0) cout << "[";
+		else if (i == bar_size + 1) cout << "]" << endl;
+		else {
+			if (x > 0) {
 				c = RED;
 				setcolor();
-
-				cout<<">";
+				cout << ">";
 				x--;
-			}
-
-			else
-			{
-				cout<<" ";
+			} else {
+				cout << " ";
 			}
 		}
-
 		c = WHITE;
 		setcolor();
 	}
 }
 
-int minimap(player&p)
-{
-	cout<<endl;
-
+void minimap(player &p) {
+	cout << endl;
 	int pos_var = 0;
-
 	int width = 160, height = 3;
 
-	for(int i = 0; i < width + 1; i++)
-	{
-		cout<<"#";
-	}
+	for (int i = 0, len = width + 1; i < len; i++) cout << "#";
+	cout << endl;
 
-	cout<<endl;
+	for (int i = 0; i < height; i++) {
 
-	for(int i = 0; i < height; i++)
-	{
-		for(int j = 0; j < width; j++)
-		{
-			if(j == 0 || j == width - 1)
-			{
-				cout<<"#";
-			}
+		for (int j = 0; j < width; j++) {
 
-			if(i == height/2)//Non-Grid Outputs
-			{
-				if(j % 8 == 0 && j != 0)
-				{
-					pos_var = j/8;
+			if (j == 0 || j == width - 1) cout << "#";
 
-					if(pos_var == p.pos)
-					{
+			if (i == height/2) {
+        // Non-Grid Outputs
+
+				if (j % 8 == 0 && j != 0) {
+
+          pos_var = j / 8;
+
+					if (pos_var == p.pos) {
 						c = YELLOW;
 						setcolor();
-
-						cout<<"P";
-
+						cout << "P";
 						c = WHITE;
 						setcolor();
-					}
-
-					else
-					{
-						switch(p.posH[pos_var])
-						{
+					} else {
+						switch (p.posH[pos_var]) {
 							case 'E':
-							{
 								c = RED;
-
 								setcolor();
-
-								cout<<p.posH[pos_var];
-							}
+								cout << p.posH[pos_var];
 							break;
 
 							case 'L':
-							{
 								c = GREEN;
-
 								setcolor();
-
-								cout<<p.posH[pos_var];
-							}
+								cout << p.posH[pos_var];
 							break;
 
 							case 'B':
-							{
 								c = WHITE;
-
 								setcolor();
-
-								cout<<p.posH[pos_var];
-							}
+								cout << p.posH[pos_var];
 							break;
 
 							default:
-							{
 								c = WHITE;
-
 								setcolor();
-
-								cout<<" ";
-							}
+								cout << " ";
 							break;
 						}
 					}
 
 					c = WHITE;
 					setcolor();
+				} else {
+					cout << " ";
 				}
-
-				else
-				{
-					cout<<" ";
-				}
-			}
-
-			else
-			{
-				cout<<" ";
+			} else {
+				cout << " ";
 			}
 		}
-		cout<<endl;
+		cout << endl;
 	}
 
-	for(int i = 0; i < width + 1; i++)
-	{
-		cout<<"#";
-	}
+	for (int i = 0, len = width + 1; i < len; i++) cout << "#";
 
-	cout<<endl;
-
-	cout<<endl;
+	cout << endl;
+	cout << endl;
 }
-
