@@ -1,27 +1,28 @@
 #pragma once
 
-#include"resources.h"
-#include"battle.h"
-#include"initialization.h"
-#include"loot.h"
-#include"events.h"
+#include "resources.h"
+#include "battle.h"
+#include "initialization.h"
+#include "loot.h"
+#include "events.h"
+#include "textart.h"
 
 using namespace std;
 
-int move(player&p,enemy&e)
+int move(player &p, enemy &e)
 {
-	system("cls");
-	
+	clear();
+
 	srand(time(0));
-	
+
 	int monster_chance,loot_chance,dead=0,random_chance;
-	
+
 	p.stamina = 5;
-	
+
 	int l = 12 - p.luck;
-	
-	int choice,cchoice;
-	
+
+	int choice;
+
 	while(p.pos < 20)
 	{
 		minimap(p);
@@ -29,7 +30,7 @@ int move(player&p,enemy&e)
 		if(p.pos < 2)
 		{
 			cout<<"\nWhat do you choose"<<endl;
-		
+
 			cout<<"\n1. Move forward"<<endl;
 			cout<<"\n2. Rest";
 
@@ -67,7 +68,7 @@ int move(player&p,enemy&e)
 		else
 		{
 			cout<<"\nWhat do you choose"<<endl;
-		
+
 			cout<<"\n1. Move forward"<<endl;
 			cout<<"\n2. Rest"<<endl;
 			cout<<"\n3. Level Up"<<endl;
@@ -75,12 +76,12 @@ int move(player&p,enemy&e)
 			cout<<"\n5. Inventory"<<endl;
 			cout<<"\n6. Create Bonfire"<<endl;
 		}
-		
+
 		cout<<"\nInput choice : ";
 		cin>>choice;
-		
-		system("cls");
-		
+
+		clear();
+
 		switch(choice)
 		{
 			case 1:
@@ -92,11 +93,11 @@ int move(player&p,enemy&e)
 					cout<<"\nYou moved forward"<<endl;
 					p.pos++;
 					p.stamina--;
-				
+
 					enemyclass(p,e);
-				
+
 					cout<<"\nCurrent Position : "<<p.pos<<endl;
-				
+
 					monster_chance = (rand () % p.luck);
 
 					if(p.pos > 18)
@@ -106,7 +107,7 @@ int move(player&p,enemy&e)
 					}
 
 					loot_chance = (rand () % l);
-				
+
 					switch(monster_chance)
 					{
 						case 0:
@@ -120,14 +121,14 @@ int move(player&p,enemy&e)
 
 							c = WHITE;
 							setcolor();
-							
+
 							stealth_attack(p,e);
-							
+
 							if(e.HP > 0)
 							{
-								dead = battle(p,e);	
+								dead = battle(p,e);
 							}
-							
+
 							if(dead==1)
 							{
 								return dead;
@@ -136,13 +137,13 @@ int move(player&p,enemy&e)
 							p.posH[p.pos] = 'E';
 						}
 						break;
-					
+
 						default:
 						{
 							cout<<"\nNo enemies appeared"<<endl;
-							
+
 							random_chance = (rand () % 10);
-							
+
 							switch(random_chance)
 							{
 								default:
@@ -160,7 +161,7 @@ int move(player&p,enemy&e)
 								}
 								break;
 							}
-							
+
 							if(dead==1)
 							{
 								return dead;
@@ -168,7 +169,7 @@ int move(player&p,enemy&e)
 						}
 						break;
 					}
-					
+
 					switch(loot_chance)
 					{
 						case 0:
@@ -178,7 +179,7 @@ int move(player&p,enemy&e)
 							empty();
 						}
 						break;
-						
+
 						default:
 						{
 							cout<<"\nYou didn't find any loot on the ground"<<endl;
@@ -202,33 +203,33 @@ int move(player&p,enemy&e)
 				}
 			}
 			break;
-			
+
 			case 2:
 			{
 				minimap(p);
-				
+
 				cout<<"\nYou chose to rest"<<endl;
-				
+
 				cout<<"\nCurrent position : "<<p.pos<<endl;
-				
+
 				cout<<"\nYour stamina increased"<<endl;
 				p.stamina = 5;
-				
+
 				cout<<"\nYour mana increased to it's max"<<endl;
-				
+
 				p.mana = p.maxM;
 
 				empty();
 			}
 			break;
-			
+
 			case 3:
 			{
 				levelup(p);
 				empty();
 			}
 			break;
-			
+
 			case 4:
 			{
 				logging(p);
@@ -257,7 +258,7 @@ int move(player&p,enemy&e)
 					p.level--;
 					p.posH[p.pos] = 'B';
 					p.i.torches--;
-					
+
 					gamesave(p,input);
 
 					return 5;
@@ -285,8 +286,8 @@ int move(player&p,enemy&e)
 			}
 			break;
 		}
-		
-		system("cls");
+
+		clear();
 		c = WHITE;
 		setcolor();
 	}

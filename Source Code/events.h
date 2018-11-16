@@ -1,9 +1,10 @@
 #pragma once
 
 #include "resources.h"
-#include"loot.h"
+#include "loot.h"
+#include "textart.h"
 
-int random_shop(player&p)
+void random_shop(player &p)
 {
 	int choice;
 
@@ -84,10 +85,10 @@ int random_shop(player&p)
 int random_event1(player&p,enemy&e)
 {
 	srand(time(0));
-	
+
 	int chance = (rand () % 10);
 	int dead = 0,choice,cchance;
-	
+
 	switch(chance)
 	{
 		case 0:
@@ -112,17 +113,17 @@ int random_event1(player&p,enemy&e)
 				textart();
 
 				cout<<"\nYou are unable to disarm the trap. Your hand is jammed into the bear trap"<<endl;
-				
+
 				p.HP = p.HP - 200;
 
 				cout<<"\nYour stress increased by 5"<<endl;
 				p.stress += 5;
-				
+
 				if(p.HP <= 0)
 				{
 					dead = 1;
 					return dead;
-				}	
+				}
 			}
 
 			else
@@ -140,7 +141,7 @@ int random_event1(player&p,enemy&e)
 			setcolor();
 		}
 		break;
-		
+
 		case 1:
 		{
 			cout<<"\nYou come across a troll cave. Investigate?"<<endl;
@@ -285,28 +286,28 @@ int random_event1(player&p,enemy&e)
 		}
 		break;
 
-		default: 
+		default:
 		{
 			cout<<"\nYou find a coffin. Investigate?"<<endl;
 			cout<<"\n1. Yes"<<endl;
 			cout<<"\n2. No"<<endl;
 			cout<<"\nInput choice : ";
 			cin>>choice;
-			
-			system("cls");
-			
+
+			clear();
+
 			switch(choice)
 			{
 				case 1:
 				{
 					cchance = (rand () % 3);
-					
+
 					switch(cchance)
 					{
 						case 0:
 						{
 							enemyclass(p,e);
-							
+
 							cout<<"\nA ";
 
 							c = RED;
@@ -320,9 +321,9 @@ int random_event1(player&p,enemy&e)
 							cout<<" jumped out at you."<<endl;
 
 							line();
-							
+
 							dead = battle(p,e);
-							
+
 							if(p.HP <= 0)
 							{
 								dead = 1;
@@ -330,7 +331,7 @@ int random_event1(player&p,enemy&e)
 							}
 						}
 						break;
-						
+
 						case 1:
 						{
 							loot_weapon(p);
@@ -355,7 +356,7 @@ int random_event1(player&p,enemy&e)
 		case 3:
 		{
 			int poison_check;
-			
+
 			cout<<"\nYou find a strange pool"<<endl;
 			cout<<"\nWhat do you do?"<<endl;
 
@@ -421,17 +422,17 @@ int random_event1(player&p,enemy&e)
 				setcolor();
 
 				cout<<"\nYou are unable to disarm the trap. Heavy boulders fall on you from the ceiling of the Caverns"<<endl;
-				
+
 				p.HP = p.HP - 400;
 
 				cout<<"\nYour stress increased by 5"<<endl;
 				p.stress += 5;
-				
+
 				if(p.HP <= 0)
 				{
 					dead = 1;
 					return dead;
-				}	
+				}
 			}
 
 			else
@@ -450,7 +451,7 @@ int random_event1(player&p,enemy&e)
 		case 5:
 		{
 			int trap_check;
-			
+
 			cout<<"\nYou find a handle sticking out of the wall"<<endl;
 			cout<<"\nWhat do you do?"<<endl;
 
@@ -490,12 +491,12 @@ int random_event1(player&p,enemy&e)
 						cout<<"\nYour stress increased by 5"<<endl;
 
 						p.stress += 5;
-						
+
 						if(p.HP <= 0)
 						{
 							dead = 1;
 							return dead;
-						}	
+						}
 					}
 				}
 				break;
@@ -527,10 +528,10 @@ int random_event1(player&p,enemy&e)
 int random_event2(player&p,enemy&e)
 {
 	srand(time(0));
-	
+
 	int chance = (rand () % 10);
 	int dead = 0,choice,cchance;
-	
+
 	switch(chance)
 	{
 		case 0:
@@ -555,17 +556,17 @@ int random_event2(player&p,enemy&e)
 				textart();
 
 				cout<<"\nYou are unable to disarm the trap. Your hand is jammed into the bear trap"<<endl;
-				
+
 				p.HP = p.HP - 200;
 
 				cout<<"\nYour stress increased by 5"<<endl;
 				p.stress += 5;
-				
+
 				if(p.HP <= 0)
 				{
 					dead = 1;
 					return dead;
-				}	
+				}
 			}
 
 			else
@@ -583,23 +584,23 @@ int random_event2(player&p,enemy&e)
 			setcolor();
 		}
 		break;
-		
-		default: 
+
+		default:
 		{
 			cout<<"\nYou found a pot. Investigate?"<<endl;
 			cout<<"\n1. Yes"<<endl;
 			cout<<"\n2. No"<<endl;
 			cout<<"\nInput choice : ";
 			cin>>choice;
-			
-			system("cls");
-			
+
+			clear();
+
 			switch(choice)
 			{
 				case 1:
 				{
 					cchance = (rand () % 2);
-					
+
 					switch(cchance)
 					{
 						case 0:
@@ -610,10 +611,10 @@ int random_event2(player&p,enemy&e)
 							cout<<"\nYou found 50 coins"<<endl;
 						}
 						break;
-						
+
 						default:
 						{
-							
+
 							loot_weapon(p);
 						}
 						break;
@@ -645,17 +646,17 @@ int random_event2(player&p,enemy&e)
 				setcolor();
 
 				cout<<"\nYou are unable to disarm the trap. Heavy boulders fall on you from the ceiling of the Caverns"<<endl;
-				
+
 				p.HP = p.HP - 400;
 
 				cout<<"\nYour stress increased by 5"<<endl;
 				p.stress += 5;
-				
+
 				if(p.HP <= 0)
 				{
 					dead = 1;
 					return dead;
-				}	
+				}
 			}
 
 			else
@@ -747,7 +748,7 @@ int random_event2(player&p,enemy&e)
 		case 3:
 		{
 			int poison_check;
-			
+
 			cout<<"\nYou find a strange pool"<<endl;
 			cout<<"\nWhat do you do?"<<endl;
 
@@ -833,7 +834,7 @@ int random_event2(player&p,enemy&e)
 	return 0;
 }
 
-int random_event(player&p,enemy&e)
+int random_event(player &p, enemy &e)
 {
 	switch(p.level)
 	{
@@ -849,6 +850,7 @@ int random_event(player&p,enemy&e)
 		}
 		break;
 	}
+  return 0;
 }
 
 int battle_collosus1(player&p,enemy&e)
@@ -862,24 +864,22 @@ int battle_collosus1(player&p,enemy&e)
 	e.cattack = "COLLOSAL CRUSH";
 	e.nattack = "BRUTAL REND";
 	e.type = UNHOLY;
-	
+
 	cout<<"\nThe first Collosus appeared. It's a Titan"<<endl;
 
 	cout<<"\nSeeing the Titan increases your stress by 7"<<endl;
 	p.stress += 7;
 
 	empty();
-	
+
 	srand(time(0));
-	
+
 	int dead=0;
-	
-	int drop_chance, check=0, choice, flee_chance, climb_check, no_climbs = 4, shield_effect, choice_ability;
+
+	int check = 0, choice, climb_check, no_climbs = 4, shield_effect, choice_ability;
 	player temp_ability, temp_panic;
-	int temp_damage;
 
 	ability_setup(p,temp_ability);
-	panicattack_setup(p,temp_panic);
 
 	c = RED;
 	setcolor();
@@ -889,7 +889,7 @@ int battle_collosus1(player&p,enemy&e)
 
 	c = WHITE;
 	setcolor();
-	
+
 	while(e.HP)
 	{
 		display_battlestats(p,e);
@@ -901,14 +901,14 @@ int battle_collosus1(player&p,enemy&e)
 		cout<<"\n3. Use Healing Potion"<<endl;
 		cout<<"\n4. Use Ability "<<endl;
 		cout<<"\n5. Climb up the Titan"<<endl;
-			
+
 		cout<<"\nInput choice : ";
-		cin>>choice;
+		cin >> choice;
 
 		p.playerdoes = choice;
-		
+
 		check = 0;
-		
+
 		switch(choice)
 		{
 			case 1:
@@ -916,13 +916,13 @@ int battle_collosus1(player&p,enemy&e)
 				attack(p,e);
 			}
 			break;
-				
-			case 2: 
+
+			case 2:
 			{
 				check = spell1(p,e);
 			}
 			break;
-				
+
 			case 3:
 			{
 				heal(p);
@@ -983,14 +983,14 @@ int battle_collosus1(player&p,enemy&e)
 		//Enemy move
 		enemy_attack(p,e,check,shield_effect);
 
-		system("cls");
+		clear();
 
 		display_battlestats(p,e);
 
 		output_battle(p, e, check, shield_effect);
 
 		panicattack(p);
-			
+
 		if(p.HP<=0)
 		{
 			c = RED;
@@ -1000,7 +1000,7 @@ int battle_collosus1(player&p,enemy&e)
 			dead = 1;
 			return dead;
 		}
-			
+
 		if(e.HP<=0)
 		{
 			c = GREEN;
@@ -1008,7 +1008,7 @@ int battle_collosus1(player&p,enemy&e)
 
 			cout<<"\nEnemy died"<<endl;
 			line();
-			
+
 			dead=0;
 			break;
 		}
@@ -1017,7 +1017,6 @@ int battle_collosus1(player&p,enemy&e)
 	}
 
 	ability_reverse(p,temp_ability);
-	panicattack_reverse(p, temp_panic);
 
 	c = WHITE;
 	setcolor();
@@ -1040,24 +1039,22 @@ int battle_collosus2(player&p,enemy&e)
 	e.cattack = "SERPENT STRIKE";
 	e.nattack = "SNAKE BITE";
 	e.type = BEAST;
-	
+
 	cout<<"\nThe second Collosus appeared. It's a Hydra"<<endl;
 
 	cout<<"\nSeeing the Titan increases your stress by 10"<<endl;
 	p.stress += 10;
 
 	empty();
-	
+
 	srand(time(0));
-	
+
 	int dead=0;
-	
-	int drop_chance, check=0, choice, flee_chance, playerdoes, climb_check, no_climbs = 4, shield_effect, choice_ability;
+
+	int check = 0, choice, shield_effect, choice_ability;
 	player temp_ability, temp_panic;
-	int temp_damage;
 
 	ability_setup(p,temp_ability);
-	panicattack_setup(p,temp_panic);
 
 	c = RED;
 	setcolor();
@@ -1069,8 +1066,7 @@ int battle_collosus2(player&p,enemy&e)
 	setcolor();
 
 	string playerdone, playerchance, enemydoes;
-	int enemychance;
-	
+
 	while(e.HP)
 	{
 		display_battlestats(p,e);
@@ -1082,14 +1078,14 @@ int battle_collosus2(player&p,enemy&e)
 		cout<<"\n3. Use Healing Potion"<<endl;
 		cout<<"\n4. Use Ability "<<endl;
 		cout<<"\n5. Stun The Hydra (Takes 1 Torch)"<<endl;
-			
+
 		cout<<"\nInput choice : ";
 		cin>>choice;
 
 		p.playerdoes = choice;
-		
+
 		check = 0;
-		
+
 		switch(choice)
 		{
 			case 1:
@@ -1097,13 +1093,13 @@ int battle_collosus2(player&p,enemy&e)
 				attack(p,e);
 			}
 			break;
-				
-			case 2: 
+
+			case 2:
 			{
 				check = spell1(p,e);
 			}
 			break;
-				
+
 			case 3:
 			{
 				heal(p);
@@ -1162,14 +1158,14 @@ int battle_collosus2(player&p,enemy&e)
 		//Enemy move
 		enemy_attack(p,e,check,shield_effect);
 
-		system("cls");
+		clear();
 
 		display_battlestats(p,e);
 
 		output_battle(p, e, check, shield_effect);
 
 		panicattack(p);
-			
+
 		if(p.HP<=0)
 		{
 			c = RED;
@@ -1179,7 +1175,7 @@ int battle_collosus2(player&p,enemy&e)
 			dead = 1;
 			return dead;
 		}
-			
+
 		if(e.HP<=0)
 		{
 			c = GREEN;
@@ -1187,7 +1183,7 @@ int battle_collosus2(player&p,enemy&e)
 
 			cout<<"\nEnemy died"<<endl;
 			line();
-			
+
 			dead=0;
 			break;
 		}
@@ -1196,7 +1192,6 @@ int battle_collosus2(player&p,enemy&e)
 	}
 
 	ability_reverse(p,temp_ability);
-	panicattack_reverse(p, temp_panic);
 
 	c = WHITE;
 	setcolor();
