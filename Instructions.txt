@@ -1,0 +1,6 @@
+Hey! Thanks so much for checking this game out.
+
+Instructions:
+
+1. Ensure that you have a folder named Savefiles (case sensitive) made in the same folder as the .exe of the game
+2. Just run Caverns & Kobolds.exe  
