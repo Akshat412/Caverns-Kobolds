@@ -8,7 +8,6 @@ The game is made to run on the Windows Command Line.
 
 ### Requirements
 
-* C++ Compiler (made in g++)
 * Windows, UNIX based systems
 
 ### Installation:
