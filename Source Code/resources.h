@@ -1,12 +1,13 @@
 #pragma once
 
-#include <iostream>
+//libwinpthread-1.dll
+//libgcc_s_dw2-1.dll
+//libstdc++-6.dll
+
+#include<iostream>
 #include<Windows.h>
 #include<ctime>
-#include<string>
-#include<cstdio>
 #include<cstdlib>
-#include<cmath>
 #include<fstream>
 #include"textart.h"
 
@@ -34,6 +35,8 @@ int abs(int x, int y)
 	{
 		return y - x;
 	}
+
+	return 0;
 }
 
 struct shield
@@ -123,7 +126,7 @@ struct inventory
 struct player
 {
 	//Name stuff
-	string name,pclass,race;
+	string name, pclass, race;
 	string playerdone, playerchance, playersuccess;
 	int playerdoes;
 	int damage_taken;
@@ -155,7 +158,6 @@ struct player
 	int riposte;
 
 	//General Stats
-	char posH[20];
 	int pos; 
 	int no_hp;
 	int level;
@@ -182,11 +184,11 @@ struct player
 		if(DEX >= 3) wh = DEX / 3; else wh = 1;
 		if(STA >= 5) dodge = STA / 5; else dodge = 1;
 		stealth = (STA / 5) + 1;
-		maxM = 40 * INE;
+		maxM = 50 * INE;
 		mana = maxM;
 		if(INE/5 - 1 > 0) spellno = INE/5 - 1; else spellno = 0;
-		fire = 5 * INE;
-		magic = 10 * FAI;
+		fire = 6 * INE;
+		magic = 20 * FAI;
 
 		stress_limit = VIT * 2;
 
@@ -196,6 +198,8 @@ struct player
 			smHP = 100/VIT; 
 			smDEX = 20/DEX; 
 		}
+
+		return 0;
 	}
 
 	int initialize_inventory()
@@ -219,9 +223,11 @@ struct player
 		}
 
 		i.is.name = "No Shield";
+
+		return 0;
 	}
 
-	player() //c'est un constructor
+	player() 
 	{
 		name = "Default Character";
 		race = "Human";
@@ -232,12 +238,12 @@ struct player
 
 		damage_taken = 0;
 
-		STR = 3;
-		VIT = 3;
-		DEX = 3;
-		STA = 3;
-		FAI = 3;
-		INE = 3;
+		STR = 5;
+		VIT = 5;
+		DEX = 5;
+		STA = 5;
+		FAI = 5;
+		INE = 5;
 		
 		setattributes();
 
@@ -268,11 +274,6 @@ struct player
 		i.weapons = 0;
 		i.armors = 0;
 
-		for(int f = 0; f < 20; f++)
-		{
-			posH[f] = '.';
-		}
-
 		initialize_inventory();
 
 		level = 0;
@@ -302,6 +303,7 @@ struct enemy
 	int poisoned;
 
 	enemytype type;
+	bool boss;
 
 	enemy()
 	{
@@ -310,6 +312,8 @@ struct enemy
 		poisoned = 0;
 
 		damage_taken = 0;
+
+		boss = false;
 	}
 };
 
@@ -319,6 +323,8 @@ int removeplayerstats_weapons(player&p, weapon&own)
 	p.DEX -= own.DEX;
 	p.FAI -= own.FAI;
 	p.INE -= own.INE;
+
+	return 0;
 }
 
 int addplayerstats_weapons(player&p)
@@ -335,6 +341,8 @@ int addplayerstats_weapons(player&p)
 	if(HP <= p.maxHP) p.HP = HP;
 	if(stress <= p.stress_limit) p.stress = stress;
 	if(mana <= p.maxM) p.mana = mana;
+
+	return 0;
 }
 
 int removeplayerstats_armors(player&p, armor&own)
@@ -343,6 +351,8 @@ int removeplayerstats_armors(player&p, armor&own)
 	p.STA -= own.STA;
 	p.FAI -= own.FAI;
 	p.INE -= own.INE;
+
+	return 0;
 }
 
 int addplayerstats_armors(player&p)
@@ -359,6 +369,8 @@ int addplayerstats_armors(player&p)
 	if(HP <= p.maxHP) p.HP = HP;
 	if(stress <= p.stress_limit) p.stress = stress;
 	if(mana <= p.maxM) p.mana = mana;
+
+	return 0;
 }
 
 int removeplayerstats_shields(player&p, shield&own)
@@ -367,6 +379,8 @@ int removeplayerstats_shields(player&p, shield&own)
 	p.DEX -= own.DEX;
 	p.FAI -= own.FAI;
 	p.INE -= own.INE;
+
+	return 0;
 }
 
 int addplayerstats_shields(player&p)
@@ -383,6 +397,8 @@ int addplayerstats_shields(player&p)
 	if(HP <= p.maxHP) p.HP = HP;
 	if(stress <= p.stress_limit) p.stress = stress;
 	if(mana <= p.maxM) p.mana = mana;
+
+	return 0;
 }
 
 int empty();
@@ -442,11 +458,6 @@ int write_data(player&p,string stream)
 	savefile << p.i.is.defense << endl;
 	savefile << p.i.is.weight << endl;
 	savefile << p.i.is.STR << " " << p.i.is.DEX << " " << p.i.is.FAI << " " << p.i.is.INE << endl;
-
-	for(int f = 0; f < 20; f++)
-	{
-		savefile << p.posH[f]<<endl;
-	}
 	
 	savefile << p.STR << endl;
 	savefile << p.VIT << endl;
@@ -492,27 +503,6 @@ int write_data(player&p,string stream)
 
 	savefile << temp_wtype << endl;
 
-	switch(p.w.material)
-	{
-		case 0: temp_wmat = 0;
-		break;
-
-		case 1: temp_wmat = 1;
-		break;
-
-		case 2: temp_wmat = 2;
-		break;
-
-		case 3: temp_wmat = 3;
-		break;
-
-		case 4: temp_wmat = 4;
-		break;
-
-		case 5: temp_wmat = 5;
-		break;
-	}
-
 	savefile << temp_wmat << endl;
 
 	//Armor Variables
@@ -540,6 +530,8 @@ int write_data(player&p,string stream)
 	savefile << p.level << endl;
 
 	savefile.close();
+
+	return 0;
 }
 
 int read_data(player&p,string stream)
@@ -583,11 +575,6 @@ int read_data(player&p,string stream)
 	savefile >> p.i.is.defense;
 	savefile >> p.i.is.weight;
 	savefile >> p.i.is.STR >> p.i.is.DEX >> p.i.is.FAI >> p.i.is.INE;
-
-	for(int f = 0; f < 20; f++)
-	{
-		savefile >> p.posH[f];
-	}
 
 	savefile >> p.STR;
 	savefile >> p.VIT;
@@ -633,27 +620,6 @@ int read_data(player&p,string stream)
 
 	savefile >> temp_wmat;
 
-	switch(temp_wmat)
-	{
-		case 0: p.w.material = WOOD;
-		break;
-
-		case 1: p.w.material = IRON;
-		break;
-
-		case 2: p.w.material = BRONZE;
-		break;
-
-		case 3: p.w.material = COPPER;
-		break;
-
-		case 4: p.w.material = STEEL;
-		break;
-
-		case 5: p.w.material = SILVER;
-		break;
-	}
-
 	//Armor Variables
 	savefile >> p.a.defense;
 	savefile >> p.a.weight;
@@ -677,6 +643,8 @@ int read_data(player&p,string stream)
 	savefile >> p.i.armors;
 	savefile >> p.xp;
 	savefile >> p.level;
+
+	return 0;
 }
 
 int setcolor()
@@ -721,6 +689,8 @@ int setcolor()
 		}
 		break;
 	}
+
+	return 0;
 }
 
 int heal(player&p)
@@ -762,6 +732,8 @@ int heal(player&p)
 	}
 	
 	cout<<"\nNo of Health Potions : "<<p.i.hp<<endl;
+
+	return 0;
 }
 
 int s_heal(player&p)
@@ -801,6 +773,8 @@ int s_heal(player&p)
 	}
 	
 	cout<<"\nNo of Ales : "<<p.i.sp<<endl;
+
+	return 0;
 }
 
 int gamesave(player&p,int input)
@@ -850,6 +824,8 @@ int gamesave(player&p,int input)
 
 	c = WHITE;
 	setcolor();
+
+	return 0;
 }
 
 int gameload(player&p,int input)
@@ -894,6 +870,8 @@ int gameload(player&p,int input)
 	p.setattributes();
 
 	p.ability_point = 5;
+
+	return 0;
 }
 
 int printH(int HP, int maxHP)
@@ -934,6 +912,8 @@ int printH(int HP, int maxHP)
 		c = WHITE;
 		setcolor();
 	}
+
+	return 0;
 }
 
 int printM(int mana, int maxM)
@@ -974,6 +954,8 @@ int printM(int mana, int maxM)
 		c = WHITE;
 		setcolor();
 	}
+
+	return 0;
 }
 
 int printA(int abi, int fac)
@@ -1012,6 +994,8 @@ int printA(int abi, int fac)
 		c = WHITE;
 		setcolor();
 	}
+
+	return 0;
 }
 
 int printS(int abi, int fac)
@@ -1052,103 +1036,35 @@ int printS(int abi, int fac)
 		c = WHITE;
 		setcolor();
 	}
+
+	return 0;
 }
 
-int minimap(player&p)
+int printRAGE(int rage, int r = 5)
 {
-	cout<<endl;
+	int x = rage;
 
-	int pos_var = 0;
-
-	int width = 160, height = 3;
-
-	for(int i = 0; i < width + 1; i++)
+	for(int i = 0; i < 7; i++)
 	{
-		cout<<"#";
-	}
-
-	cout<<endl;
-
-	for(int i = 0; i < height; i++)
-	{
-		for(int j = 0; j < width; j++)
+		if(i == 0)
 		{
-			if(j == 0 || j == width - 1)
+			cout<<"[";
+		}
+
+		else if(i == 6)
+		{
+			cout<<"]"<<endl;
+		}
+
+		else
+		{
+			if(x > 0)
 			{
-				cout<<"#";
-			}
+				c = RED;
+				setcolor();
 
-			if(i == height/2)//Non-Grid Outputs
-			{
-				if(j % 8 == 0 && j != 0)
-				{
-					pos_var = j/8;
-
-					if(pos_var == p.pos)
-					{
-						c = YELLOW;
-						setcolor();
-
-						cout<<"P";
-
-						c = WHITE;
-						setcolor();
-					}
-
-					else
-					{
-						switch(p.posH[pos_var])
-						{
-							case 'E':
-							{
-								c = RED;
-
-								setcolor();
-
-								cout<<p.posH[pos_var];
-							}
-							break;
-
-							case 'L':
-							{
-								c = GREEN;
-
-								setcolor();
-
-								cout<<p.posH[pos_var];
-							}
-							break;
-
-							case 'B':
-							{
-								c = WHITE;
-
-								setcolor();
-
-								cout<<p.posH[pos_var];
-							}
-							break;
-
-							default:
-							{
-								c = WHITE;
-
-								setcolor();
-
-								cout<<" ";
-							}
-							break;
-						}
-					}
-
-					c = WHITE;
-					setcolor();
-				}
-
-				else
-				{
-					cout<<" ";
-				}
+				cout<<">";
+				x--;
 			}
 
 			else
@@ -1156,16 +1072,12 @@ int minimap(player&p)
 				cout<<" ";
 			}
 		}
-		cout<<endl;
+
+		c = WHITE;
+		setcolor();
 	}
 
-	for(int i = 0; i < width + 1; i++)
-	{
-		cout<<"#";
-	}
-
-	cout<<endl;
-
-	cout<<endl;
+	return 0;
 }
+
 

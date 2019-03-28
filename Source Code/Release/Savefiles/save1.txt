@@ -1,9 +1,9 @@
-Kahs
-Half-Elf
-Herald
-Iron Spear
-Light Iron Armor
-Iron Shield Of The Magi
+Kar
+Elf
+Pyromancer
+Walking Stick
+Plain Robes
+No Shield
 Empty
 Empty
 Empty
@@ -36,30 +36,50 @@ No Shield
 1
 0
 0 0 0 0
-16
-23
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+6
 13
 11
-31
-22
-20
-10
-1 0 3 0
+9
+27
+32
+1
+2
+0 0 2 2
+1
+7
 0
-4
+1
 0
-5
-5
-1 0 3 0
+0 0 2 2
+1
+0
+0 0 0 0
+0
+3
 6
-3
-0 0 0 4
-0
-3
-12
 5
 1
-12
+6
 10
 0
 0

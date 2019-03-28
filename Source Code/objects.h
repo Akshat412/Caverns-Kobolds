@@ -1,14 +1,24 @@
 #pragma once
 
+#include"resources.h"
+
 using namespace std;
 
-weapon weaponlist(weapon temp,player&p)
+weapon weaponlist(weapon temp, player &p, int x = -999)
 {
 	srand(time(0));
 	int chance;
 	
-	chance = (rand () % 28) + 1;
+	if(x == -999)
+	{
+		chance = (rand () % 28) + 1;
+	}
 
+	else
+	{
+		chance = x;
+	}
+	
 	switch(p.level)
 	{
 		case 3:
@@ -23,7 +33,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.STR = 5;
 					temp.dh = true;
 					temp.type = HV_BLUDGE;
-					p.w.material = BRONZE;
 				}
 				break;
 
@@ -35,7 +44,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.STR = 5;
 					temp.dh = true;
 					temp.type = HV_BLUDGE;
-					p.w.material = BRONZE;
 				}
 				break;
 
@@ -48,7 +56,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.DEX = 1;
 					temp.dh = true;
 					temp.type = HV_SWORD;
-					p.w.material = BRONZE;
 				}
 				break;
 
@@ -61,7 +68,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.DEX = 1;
 					temp.dh = true;
 					temp.type = HV_AXE;
-					p.w.material = BRONZE;
 				}
 				break;
 
@@ -74,7 +80,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.FAI = 1;
 					temp.dh = true;
 					temp.type = HV_BLUDGE;
-					p.w.material = BRONZE;
 				}
 				break;
 
@@ -87,7 +92,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.DEX = 1;
 					temp.dh = true;
 					temp.type = HV_SWORD;
-					p.w.material = BRONZE;
 				}
 				break;
 
@@ -100,7 +104,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.DEX = 3;
 					temp.dh = false;
 					temp.type = SWORD;
-					p.w.material = BRONZE;
 				}
 				break;
 
@@ -113,7 +116,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.FAI = 3;
 					temp.dh = false;
 					temp.type = SPEAR;
-					p.w.material = BRONZE;
 				}
 				break;
 
@@ -126,7 +128,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.FAI = 4;
 					temp.dh = false;
 					temp.type = SPEAR;
-					p.w.material = BRONZE;
 				}
 				break;
 
@@ -138,7 +139,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.STR = 5;
 					temp.dh = false;
 					temp.type = AXE;
-					p.w.material = BRONZE;
 				}
 				break;
 
@@ -150,7 +150,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.DEX = 5;
 					temp.dh = false;
 					temp.type = DAGGER;
-					p.w.material = BRONZE;
 				}
 				break;
 
@@ -163,7 +162,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.DEX = 4;
 					temp.dh = false;
 					temp.type = DAGGER;
-					p.w.material = IRON;
 				}
 				break;
 
@@ -176,7 +174,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.DEX = 4;
 					temp.dh = false;
 					temp.type = DAGGER;
-					p.w.material = BRONZE;
 				}
 				break;
 
@@ -189,7 +186,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.INE = 5;
 					temp.dh = true;
 					temp.type = STAFF;
-					p.w.material = WOOD;
 				}
 				break;
 
@@ -202,7 +198,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.INE = 4;
 					temp.dh = false;
 					temp.type = DAGGER;
-					p.w.material = COPPER;
 				}
 				break;
 
@@ -214,7 +209,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.STR = 7;
 					temp.dh = true;
 					temp.type = HV_BLUDGE;
-					p.w.material = COPPER;
 				}
 				break;
 
@@ -227,7 +221,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.DEX = 3;
 					temp.dh = true;
 					temp.type = HV_SWORD;
-					p.w.material = COPPER;
 				}
 				break;
 
@@ -240,7 +233,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.FAI = 5;
 					temp.dh = false;
 					temp.type = SPEAR;
-					p.w.material = COPPER;
 				}
 				break;
 
@@ -252,7 +244,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.STR = 7;
 					temp.dh = false;
 					temp.type = AXE;
-					p.w.material = COPPER;
 				}
 				break;
 
@@ -265,7 +256,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.DEX = 6;
 					temp.dh = false;
 					temp.type = DAGGER;
-					p.w.material = COPPER;
 				}
 				break;
 
@@ -277,7 +267,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.FAI = 7;
 					temp.dh = false;
 					temp.type = SWORD;
-					p.w.material = COPPER;
 				}
 				break;
 
@@ -289,7 +278,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.STR = 7;
 					temp.dh = true;
 					temp.type = SWORD;
-					p.w.material = COPPER;
 				}
 				break;
 
@@ -302,7 +290,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.DEX = 2;
 					temp.dh = false;
 					temp.type = AXE;
-					p.w.material = COPPER;
 				}
 				break;
 
@@ -315,7 +302,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.DEX = 1;
 					temp.dh = false;
 					temp.type = AXE;
-					p.w.material = COPPER;
 				}
 				break;
 
@@ -327,7 +313,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.DEX = 7;
 					temp.dh = false;
 					temp.type = STAFF;
-					p.w.material = COPPER;
 				}
 				break;
 			}
@@ -347,7 +332,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.STR = 5;
 					temp.dh = true;
 					temp.type = HV_BLUDGE;
-					p.w.material = STEEL;
 				}
 				break;
 
@@ -360,7 +344,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.DEX = 1;
 					temp.dh = true;
 					temp.type = HV_AXE;
-					p.w.material = STEEL;
 				}
 				break;
 
@@ -372,7 +355,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.STR = 5;
 					temp.dh = true;
 					temp.type = HV_BLUDGE;
-					p.w.material = STEEL;
 				}
 				break;
 
@@ -385,7 +367,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.DEX = 2;
 					temp.dh = true;
 					temp.type = HV_SWORD;
-					p.w.material = STEEL;
 				}
 				break;
 
@@ -398,7 +379,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.FAI = 2;
 					temp.dh = true;
 					temp.type = HV_BLUDGE;
-					p.w.material = STEEL;
 				}
 				break;
 
@@ -411,7 +391,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.DEX = 4;
 					temp.dh = false;
 					temp.type = AXE;
-					p.w.material = STEEL;
 				}
 				break;
 
@@ -424,7 +403,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.DEX = 4;
 					temp.dh = false;
 					temp.type = SWORD;
-					p.w.material = STEEL;
 				}
 				break;
 
@@ -437,7 +415,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.DEX = 1;
 					temp.dh = true;
 					temp.type = HV_SWORD;
-					p.w.material = STEEL;
 				}
 				break;
 
@@ -450,7 +427,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.FAI = 3;
 					temp.dh = false;
 					temp.type = SPEAR;
-					p.w.material = STEEL;
 				}
 				break;
 
@@ -463,7 +439,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.FAI = 2;
 					temp.dh = false;
 					temp.type = SPEAR;
-					p.w.material = STEEL;
 				}
 				break;
 
@@ -475,7 +450,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.DEX = 5;
 					temp.dh = false;
 					temp.type = DAGGER;
-					p.w.material = STEEL;
 				}
 				break;
 
@@ -488,7 +462,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.DEX = 4;
 					temp.dh = false;
 					temp.type = DAGGER;
-					p.w.material = STEEL;
 				}
 				break;
 
@@ -501,7 +474,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.DEX = 4;
 					temp.dh = false;
 					temp.type = DAGGER;
-					p.w.material = BRONZE;
 				}
 				break;
 
@@ -514,7 +486,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.INE = 5;
 					temp.dh = true;
 					temp.type = STAFF;
-					p.w.material = STEEL;
 				}
 				break;
 
@@ -527,7 +498,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.INE = 4;
 					temp.dh = false;
 					temp.type = DAGGER;
-					p.w.material = STEEL;
 				}
 				break;
 
@@ -539,7 +509,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.STR = 7;
 					temp.dh = true;
 					temp.type = HV_BLUDGE;
-					p.w.material = SILVER;
 				}
 				break;
 
@@ -552,7 +521,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.DEX = 3;
 					temp.dh = true;
 					temp.type = HV_SWORD;
-					p.w.material = SILVER;
 				}
 				break;
 
@@ -565,7 +533,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.FAI = 5;
 					temp.dh = false;
 					temp.type = SPEAR;
-					p.w.material = SILVER;
 				}
 				break;
 
@@ -577,7 +544,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.STR = 7;
 					temp.dh = false;
 					temp.type = AXE;
-					p.w.material = SILVER;
 				}
 				break;
 
@@ -590,7 +556,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.DEX = 6;
 					temp.dh = false;
 					temp.type = DAGGER;
-					p.w.material = SILVER;
 				}
 				break;
 
@@ -602,7 +567,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.FAI = 7;
 					temp.dh = false;
 					temp.type = SWORD;
-					p.w.material = SILVER;
 				}
 				break;
 
@@ -614,7 +578,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.STR = 7;
 					temp.dh = true;
 					temp.type = SWORD;
-					p.w.material = SILVER;
 				}
 				break;
 
@@ -627,7 +590,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.DEX = 2;
 					temp.dh = false;
 					temp.type = AXE;
-					p.w.material = SILVER;
 				}
 				break;
 
@@ -640,7 +602,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.DEX = 1;
 					temp.dh = false;
 					temp.type = AXE;
-					p.w.material = SILVER;
 				}
 				break;
 
@@ -652,7 +613,6 @@ weapon weaponlist(weapon temp,player&p)
 					temp.DEX = 7;
 					temp.dh = false;
 					temp.type = STAFF;
-					p.w.material = SILVER;
 				}
 				break;
 			}

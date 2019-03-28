@@ -123,25 +123,38 @@ int menu(player&p,int&input)
 			}
 		}	
 	}
+
+	return 0;
 }
 
 int test()
 {
+	weapon w;
 	player p;
-	enemy e;
+	p.level = 3;
 
-	playerclass(p);
+	ofstream savefile("weapons.txt");
 
-	int crit = 130/p.DEX;
+	system("cls");
+	cout << "\nSaving weapons on disk" << endl;
 
-	int crit_chance = 0;
-
-	for(int i = 0; i < 20; i++)
+	while(p.level <= 6)
 	{
-		crit_chance = (rand () % crit);
-		cout<<crit_chance<<endl;
+		for(int x = 1; x <= 25; x++)
+		{
+			w = weaponlist(w, p, x);
+
+			savefile << w.name << endl;
+			savefile << w.damage << endl;
+			savefile << w.weight << endl;
+			savefile << w.STR << " " << w.DEX << " " << w.FAI << " " << w.INE << endl;
+			savefile << w.dh << endl;
+			savefile << endl;
+		}
+
+		p.level += 3;
 	}
 
-	empty();
+	return 0;
 }
 

@@ -24,7 +24,45 @@ int move(player&p,enemy&e)
 	
 	while(p.pos < 20)
 	{
-		minimap(p);
+		cout<<"\nPlayer Health : ";
+
+		c = GREEN;
+		setcolor();
+
+		if(p.HP > 0)
+		{
+			cout<<p.HP;
+		}
+
+		else
+		{
+			cout<<"0";
+		}
+
+		c = WHITE;
+		setcolor();
+
+		cout<<" / "<<p.maxHP;
+
+		cout<<endl;
+		printH(p.HP, p.maxHP);
+
+		cout<<"\nPlayer Mana : ";
+
+		c = GREEN;
+		setcolor();
+
+		cout<<p.mana;
+
+		c = WHITE;
+		setcolor();
+
+		cout<<" / "<<p.maxM;
+
+		cout<<endl;
+		printM(p.mana, p.maxM);
+
+		cout<<"\nPlayer Stress : "; printS(p.stress, p.stress_limit);
 
 		if(p.pos < 2)
 		{
@@ -87,7 +125,45 @@ int move(player&p,enemy&e)
 			{
 				if(p.stamina>0)
 				{
-					minimap(p);
+					cout<<"\nPlayer Health : ";
+
+					c = GREEN;
+					setcolor();
+
+					if(p.HP > 0)
+					{
+						cout<<p.HP;
+					}
+
+					else
+					{
+						cout<<"0";
+					}
+
+					c = WHITE;
+					setcolor();
+
+					cout<<" / "<<p.maxHP;
+
+					cout<<endl;
+					printH(p.HP, p.maxHP);
+
+					cout<<"\nPlayer Mana : ";
+
+					c = GREEN;
+					setcolor();
+
+					cout<<p.mana;
+
+					c = WHITE;
+					setcolor();
+
+					cout<<" / "<<p.maxM;
+
+					cout<<endl;
+					printM(p.mana, p.maxM);
+
+					cout<<"\nPlayer Stress : "; printS(p.stress, p.stress_limit);
 
 					cout<<"\nYou moved forward"<<endl;
 					p.pos++;
@@ -132,8 +208,6 @@ int move(player&p,enemy&e)
 							{
 								return dead;
 							}
-
-							p.posH[p.pos] = 'E';
 						}
 						break;
 					
@@ -148,14 +222,12 @@ int move(player&p,enemy&e)
 								default:
 								{
 									dead = random_event(p,e);
-									p.posH[p.pos] = 'e';
 								}
 								break;
 
 								case 0: case 1: case 2: case 3:
 								{
 									//Nothing Happens
-									p.posH[p.pos] = '-';
 									break;
 								}
 								break;
@@ -174,7 +246,6 @@ int move(player&p,enemy&e)
 						case 0:
 						{
 							loot_potion(p);
-							p.posH[p.pos] = 'L';
 							empty();
 						}
 						break;
@@ -189,7 +260,45 @@ int move(player&p,enemy&e)
 				}
 				else
 				{
-					minimap(p);
+					cout<<"\nPlayer Health : ";
+
+					c = GREEN;
+					setcolor();
+
+					if(p.HP > 0)
+					{
+						cout<<p.HP;
+					}
+
+					else
+					{
+						cout<<"0";
+					}
+
+					c = WHITE;
+					setcolor();
+
+					cout<<" / "<<p.maxHP;
+
+					cout<<endl;
+					printH(p.HP, p.maxHP);
+
+					cout<<"\nPlayer Mana : ";
+
+					c = GREEN;
+					setcolor();
+
+					cout<<p.mana;
+
+					c = WHITE;
+					setcolor();
+
+					cout<<" / "<<p.maxM;
+
+					cout<<endl;
+					printM(p.mana, p.maxM);
+
+					cout<<"\nPlayer Stress : "; printS(p.stress, p.stress_limit);
 
 					c = RED;
 					setcolor();
@@ -205,7 +314,47 @@ int move(player&p,enemy&e)
 			
 			case 2:
 			{
-				minimap(p);
+				p.mana = p.maxM;
+
+				cout<<"\nPlayer Health : ";
+
+				c = GREEN;
+				setcolor();
+
+				if(p.HP > 0)
+				{
+					cout<<p.HP;
+				}
+
+				else
+				{
+					cout<<"0";
+				}
+
+				c = WHITE;
+				setcolor();
+
+				cout<<" / "<<p.maxHP;
+
+				cout<<endl;
+				printH(p.HP, p.maxHP);
+
+				cout<<"\nPlayer Mana : ";
+
+				c = GREEN;
+				setcolor();
+
+				cout<<p.mana;
+
+				c = WHITE;
+				setcolor();
+
+				cout<<" / "<<p.maxM;
+
+				cout<<endl;
+				printM(p.mana, p.maxM);
+
+				cout<<"\nPlayer Stress : "; printS(p.stress, p.stress_limit);
 				
 				cout<<"\nYou chose to rest"<<endl;
 				
@@ -215,8 +364,6 @@ int move(player&p,enemy&e)
 				p.stamina = 5;
 				
 				cout<<"\nYour mana increased to it's max"<<endl;
-				
-				p.mana = p.maxM;
 
 				empty();
 			}
@@ -245,7 +392,45 @@ int move(player&p,enemy&e)
 
 			case 6:
 			{
-				minimap(p);
+				cout<<"\nPlayer Health : ";
+
+				c = GREEN;
+				setcolor();
+
+				if(p.HP > 0)
+				{
+					cout<<p.HP;
+				}
+
+				else
+				{
+					cout<<"0";
+				}
+
+				c = WHITE;
+				setcolor();
+
+				cout<<" / "<<p.maxHP;
+
+				cout<<endl;
+				printH(p.HP, p.maxHP);
+
+				cout<<"\nPlayer Mana : ";
+
+				c = GREEN;
+				setcolor();
+
+				cout<<p.mana;
+
+				c = WHITE;
+				setcolor();
+
+				cout<<" / "<<p.maxM;
+
+				cout<<endl;
+				printM(p.mana, p.maxM);
+
+				cout<<"\nPlayer Stress : "; printS(p.stress, p.stress_limit);
 
 				if(p.i.torches > 0)
 				{
@@ -255,7 +440,6 @@ int move(player&p,enemy&e)
 					cout<<"\nYou make a bonfire, and rest there"<<endl;
 
 					p.level--;
-					p.posH[p.pos] = 'B';
 					p.i.torches--;
 					
 					gamesave(p,input);

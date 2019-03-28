@@ -101,6 +101,8 @@ correct :
 	p.setattributes();
 
 	line();
+
+	return 0;
 }
 
 int playerclass(player&p)
@@ -990,6 +992,8 @@ int enemyclass(player&p,enemy&e)
 		}
 		break;
 	}
+
+	return 0;
 }
 
 int levelup(player&p)
@@ -1193,6 +1197,8 @@ int levelup(player&p)
 
 	c = WHITE;
 	setcolor();
+
+	return 0;
 }
 
 int log_raws(player&p)
@@ -1206,6 +1212,8 @@ int log_raws(player&p)
 	cout<<"\nMax Mana : "<<p.maxM<<endl;
 	cout<<"\nSpell Level : "<<p.spellno<<endl;
 	cout<<"\nFire : "<<p.fire<<endl;
+
+	return 0;
 }
 
 int logging(player&p)
@@ -1576,7 +1584,7 @@ int shop(player&p)
 
 					cout<<"\nYou bought a Lucky Charm"<<endl;
 					p.luck += 5;
-					p.i.money -= 500;
+					p.i.money -= 250;
 				}
 						
 				else
@@ -1604,6 +1612,8 @@ int shop(player&p)
 		c = WHITE;
 		setcolor();
 	}
+
+	return 0;
 }
 
 int library()
@@ -1691,4 +1701,6 @@ int library()
 
 		line();
 	}
+
+	return 0;
 }

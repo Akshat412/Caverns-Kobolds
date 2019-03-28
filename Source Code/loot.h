@@ -40,6 +40,8 @@ int loot_potion(player&p)
 		}
 		break;
 	}
+
+	return 0;
 }
 
 int display_weaponstats(weapon&w)
@@ -146,6 +148,8 @@ int display_weaponstats(weapon&w)
 
 	c = WHITE;
 	setcolor();
+
+	return 0;
 }
 
 int loot_weapon(player&p)
@@ -254,6 +258,8 @@ int loot_weapon(player&p)
 
 	c = WHITE;
 	setcolor();
+
+	return 0;
 }
 
 int display_armorstats(armor&a)
@@ -341,6 +347,8 @@ int display_armorstats(armor&a)
 	{
 		cout<<" ]";
 	}
+
+	return 0;
 }
 
 int loot_armor(player&p)
@@ -440,6 +448,8 @@ int loot_armor(player&p)
 
 	c = WHITE;
 	setcolor();
+
+	return 0;
 }
 
 int display_shieldstats(shield&w)
@@ -527,6 +537,8 @@ int display_shieldstats(shield&w)
 	{
 		cout<<" ]";
 	}
+
+	return 0;
 }
 
 int loot_shield(player&p)
@@ -611,6 +623,8 @@ int loot_shield(player&p)
 
 	c = WHITE;
 	setcolor();
+
+	return 0;
 }
 
 int inventory(player&p)
@@ -872,6 +886,8 @@ int inventory(player&p)
 		}
 		break;
 	}
+
+	return 0;
 }
 
 

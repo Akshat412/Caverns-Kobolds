@@ -99,6 +99,11 @@ int story(player&p,enemy&e,int input)
 						cout<<"\nBandit King : Most impressive! I have never seen someone slay a wolf with this much ease. However you still must do the task. I insist."<<endl;
 					}
 					break;
+
+					case 420:
+					{
+						logging(p);
+					}
 					
 					default:
 					{
@@ -446,11 +451,6 @@ int story(player&p,enemy&e,int input)
 			case 5:
 			{
 				line();
-
-				for(int f = 0; f < 20; f++)
-				{
-					p.posH[f] = '.';
-				}
 				
 				cout<<"\nYou are summoned in front of the Bandit Chief"<<endl;
 
@@ -630,6 +630,9 @@ int story(player&p,enemy&e,int input)
 				line();
 				
 				cout<<"\nYou get out of the stronghold, walking away to freedom...."<<endl;
+				cout<<"\nYou move to the countryside, where you buy a piece of land and farm parsnips happily ever after"<<endl;
+				cout<<endl;
+				cout<<"\nCongrats! You just finished Caverns & Kobolds. Thank you so much for playing!"<<endl; 
 				
 				empty();
 
@@ -638,6 +641,8 @@ int story(player&p,enemy&e,int input)
 			break;
 		}
 	}
+
+	return 0;
 }	
 
 int main()
