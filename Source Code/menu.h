@@ -129,32 +129,6 @@ int menu(player&p,int&input)
 
 int test()
 {
-	weapon w;
-	player p;
-	p.level = 3;
-
-	ofstream savefile("weapons.txt");
-
-	system("cls");
-	cout << "\nSaving weapons on disk" << endl;
-
-	while(p.level <= 6)
-	{
-		for(int x = 1; x <= 25; x++)
-		{
-			w = weaponlist(w, p, x);
-
-			savefile << w.name << endl;
-			savefile << w.damage << endl;
-			savefile << w.weight << endl;
-			savefile << w.STR << " " << w.DEX << " " << w.FAI << " " << w.INE << endl;
-			savefile << w.dh << endl;
-			savefile << endl;
-		}
-
-		p.level += 3;
-	}
-
 	return 0;
 }
 
